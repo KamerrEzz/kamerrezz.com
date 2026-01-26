@@ -1,63 +1,169 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import ProfileHeader from '../components/ProfileHeader.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Sobre mí - ${SITE_TITLE}`} description="Sobre Kamerr Ezz" />
+	</head>
+	<body class="min-h-screen bg-[#0A0A0A] text-white">
+		<div class="max-w-2xl mx-auto px-4 md:px-6 py-8">
+			<ProfileHeader activeTab="about" />
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+			{/* About Sections */}
+			<div class="space-y-6">
+				{/* Sobre mí Card */}
+				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
+					<div class="flex items-center gap-2 mb-4">
+						<svg
+							class="w-5 h-5"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							style="color: #d5338b;"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+							></path>
+						</svg>
+						<h2 class="text-lg font-semibold" style="color: #d5338b;">
+							Sobre mí
+						</h2>
+					</div>
+					<div class="space-y-3 text-white text-sm md:text-base leading-relaxed">
+						<p>
+							Soy un emprendedor creativo que aprende construyendo y enseña
+							documentando procesos reales.
+						</p>
+						<p>
+							Trabajo desarrollando proyectos digitales donde combino
+							tecnología, educación y estrategia.
+						</p>
+						<p>
+							No comparto resultados aislados: muestro decisiones, errores,
+							iteraciones y correcciones para que otros aprendan a pensar
+							sistemas, no solo a usar herramientas.
+						</p>
+					</div>
+				</div>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+				{/* Experiencia práctica Card */}
+				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
+					<div class="flex items-center gap-2 mb-4">
+						<svg
+							class="w-5 h-5"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							style="color: #d5338b;"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+							></path>
+						</svg>
+						<h2 class="text-lg font-semibold" style="color: #d5338b;">
+							Experiencia práctica
+						</h2>
+					</div>
+					<div class="space-y-4">
+						<div class="flex gap-4">
+							<div class="flex-shrink-0">
+								<div
+									class="w-2 h-2 rounded-full mt-2"
+									style="background-color: #d5338b;"
+								></div>
+							</div>
+							<div class="flex-1">
+								<div class="text-sm text-[#9CA3AF] mb-1">2024 - Presente</div>
+								<h3 class="text-white font-semibold mb-1">Zeew Space</h3>
+								<p class="text-[#9CA3AF] text-sm">
+									Diseño y desarrollo de un ecosistema educativo enfocado en
+									tecnología y emprendimiento práctico.
+								</p>
+							</div>
+						</div>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+						<div class="flex gap-4">
+							<div class="flex-shrink-0">
+								<div
+									class="w-2 h-2 rounded-full mt-2"
+									style="background-color: #d5338b;"
+								></div>
+							</div>
+							<div class="flex-1">
+								<div class="text-sm text-[#9CA3AF] mb-1">2023 - 2024</div>
+								<h3 class="text-white font-semibold mb-1">
+									Proyectos de validación
+								</h3>
+								<p class="text-[#9CA3AF] text-sm">
+									Experimentación con diferentes modelos de producto,
+									documentando aprendizajes y pivotes.
+								</p>
+							</div>
+						</div>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+						<div class="flex gap-4">
+							<div class="flex-shrink-0">
+								<div
+									class="w-2 h-2 rounded-full mt-2"
+									style="background-color: #d5338b;"
+								></div>
+							</div>
+							<div class="flex-1">
+								<div class="text-sm text-[#9CA3AF] mb-1">2022 - 2023</div>
+								<h3 class="text-white font-semibold mb-1">
+									Primeros prototipos
+								</h3>
+								<p class="text-[#9CA3AF] text-sm">
+									Construcción de herramientas internas y proyectos personales
+									para aprender desarrollo web.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{/* Aprendizaje continuo Card */}
+				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
+					<div class="flex items-center gap-2 mb-4">
+						<svg
+							class="w-5 h-5"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							style="color: #d5338b;"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+							></path>
+						</svg>
+						<h2 class="text-lg font-semibold" style="color: #d5338b;">
+							Aprendizaje continuo
+						</h2>
+					</div>
+					<p class="text-white text-sm md:text-base leading-relaxed">
+						Aprendo de forma autodidacta y aplicada, integrando estudio,
+						práctica y experimentación constante en proyectos reales.
+					</p>
+				</div>
+			</div>
+
+			{/* Footer */}
+			<footer class="mt-12 pt-8 text-center text-sm text-[#9CA3AF]">
+				<p>© Kamerr Ezz — zeew.space</p>
+			</footer>
+		</div>
+	</body>
+</html>

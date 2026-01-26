@@ -1,49 +1,141 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import ProfileHeader from "../components/ProfileHeader.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { getCollection } from "astro:content";
+
+const blogPosts = (await getCollection("blog"))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add KamerrEzz to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
+	<body class="min-h-screen bg-[#0A0A0A] text-white">
+		<div class="max-w-2xl mx-auto px-4 md:px-6 py-8">
+			<ProfileHeader activeTab="posts" />
+
+			{/* Posts Feed */}
+			<div class="space-y-0">
+				{blogPosts.map((post) => {
+					const postYear = new Date(post.data.pubDate).getFullYear();
+					return (
+						<div class="border-b border-[#374151] py-4 first:pt-0 hover:bg-[#0F0F0F] transition-colors rounded px-2 -mx-2">
+							<div class="flex gap-4">
+								{/* Mini Avatar */}
+								<div class="flex-shrink-0">
+									<div
+										class="w-10 h-10 rounded-full bg-[#1A1A1A] border-2 border-[#374151] flex items-center justify-center"
+									>
+										<span
+											class="text-sm font-bold"
+											style="color: #d5338b;"
+											>KE</span
+										>
+									</div>
+								</div>
+
+								{/* Post Content */}
+								<div class="flex-1 min-w-0">
+									{/* Author & Date */}
+									<div class="mb-2 text-sm text-[#9CA3AF]">
+										<span class="text-white">Kamerr Ezz</span>
+										<span class="mx-1">@kamerrezz</span>
+										<span>·</span>
+										<span class="ml-1">{postYear}</span>
+									</div>
+
+									{/* Post Text - Clickable */}
+									<a
+										href={`/blog/${post.id}/`}
+										class="block mb-3 text-white text-sm md:text-base leading-relaxed hover:underline"
+									>
+										{post.data.description || post.data.title}
+									</a>
+
+									{/* Tag */}
+									<div class="mb-3">
+										<span
+											class="inline-block px-2 py-1 text-xs font-medium rounded-full"
+											style="background-color: #1A1A1A; color: #d5338b;"
+										>
+											{post.data.tags?.[0] || "nota"}
+										</span>
+									</div>
+
+									{/* Interaction Icons */}
+									<div class="flex items-center gap-6 text-[#9CA3AF]">
+										<button
+											class="hover:text-white transition-colors"
+											aria-label="Comentar"
+											onclick="event.stopPropagation()"
+										>
+											<svg
+												class="w-5 h-5"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+												></path>
+											</svg>
+										</button>
+										<button
+											class="hover:text-white transition-colors"
+											aria-label="Compartir"
+											onclick="event.stopPropagation()"
+										>
+											<svg
+												class="w-5 h-5"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"
+												></path>
+											</svg>
+										</button>
+										<button
+											class="hover:text-white transition-colors"
+											aria-label="Me gusta"
+											onclick="event.stopPropagation()"
+										>
+											<svg
+												class="w-5 h-5"
+												fill="none"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													stroke-width="2"
+													d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+												></path>
+											</svg>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					);
+				})}
+			</div>
+
+			{/* Footer */}
+			<footer class="mt-12 pt-8 text-center text-sm text-[#9CA3AF]">
+				<p>© Kamerr Ezz — zeew.space</p>
+			</footer>
+		</div>
 	</body>
 </html>

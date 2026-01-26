@@ -1,0 +1,164 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import FallbackImage from '../assets/blog-placeholder-1.jpg';
+
+type Props = CollectionEntry<'projects'>['data'];
+
+const { title, description, image, technologies, demo, github, status, date } = Astro.props;
+---
+
+<html lang="es">
+	<head>
+		<BaseHead title={title} description={description} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+				max-width: 800px;
+				width: 100%;
+				height: auto;
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.meta {
+				margin-bottom: 1em;
+				color: rgb(var(--gray));
+				text-align: center;
+			}
+			.status {
+				display: inline-block;
+				font-size: 0.875rem;
+				padding: 0.25rem 0.75rem;
+				border-radius: 20px;
+				font-weight: 500;
+				margin: 0 0.5rem;
+			}
+			.status.completed {
+				background: #d4edda;
+				color: #155724;
+			}
+			.status.in-progress {
+				background: #fff3cd;
+				color: #856404;
+			}
+			.technologies {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				justify-content: center;
+				margin: 1em 0;
+			}
+			.tech-tag {
+				background: #e3f2fd;
+				color: #1976d2;
+				padding: 0.25rem 0.75rem;
+				border-radius: 20px;
+				font-size: 0.875rem;
+			}
+			.project-links {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				margin: 2em 0;
+			}
+			.btn {
+				display: inline-block;
+				padding: 0.75rem 1.5rem;
+				text-decoration: none;
+				border-radius: 6px;
+				transition: all 0.3s ease;
+				font-weight: 500;
+			}
+			.btn.primary {
+				background: #667eea;
+				color: white;
+			}
+			.btn.primary:hover {
+				background: #5a6fd8;
+			}
+			.btn.secondary {
+				background: #6c757d;
+				color: white;
+			}
+			.btn.secondary:hover {
+				background: #5a6268;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{image ? (
+						<Image width={800} height={400} src={image} alt={title} />
+					) : (
+						<Image width={800} height={400} src={FallbackImage} alt={`${title} - Imagen no disponible`} />
+					)}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="meta">
+							{status && (
+								<span class={`status ${status}`}>
+									{status === 'completed' ? '✅ Completado' : '🚧 En desarrollo'}
+								</span>
+							)}
+							{date && (
+								<time>{date.toLocaleDateString('es-ES')}</time>
+							)}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					<slot />
+					
+					{(demo || github) && (
+						<div class="project-links">
+							{demo && (
+								<a href={demo} target="_blank" rel="noopener noreferrer" class="btn primary">
+									🔗 Ver Demo
+								</a>
+							)}
+							{github && (
+								<a href={github} target="_blank" rel="noopener noreferrer" class="btn secondary">
+									💻 GitHub
+								</a>
+							)}
+						</div>
+					)}
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
