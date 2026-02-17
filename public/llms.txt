@@ -1,0 +1,30 @@
+# Kamerr Ezz
+
+> Desarrollador full-stack y emprendedor creativo. Construye productos reales y convierte ese proceso en educación práctica: enseña lo que aprende mientras lo construye, mostrando el proceso completo desde la idea hasta la ejecución, sin ocultar iteraciones, fallos ni decisiones técnicas.
+
+Identidad: **builder-educator** — mentalidad de producto con corazón de maestro. La promesa es transparencia operativa: no hay "secretos", hay procesos. La autoridad viene por evidencia pública, coherencia y persistencia documentando proyectos y aprendizaje aplicado.
+
+Tres pilares temáticos: (1) aprendizaje y desarrollo de habilidades, (2) construcción y evolución de proyectos reales, (3) mentalidad y filosofía emprendedora. Público objetivo: autodidactas que buscan independencia y crecimiento profesional con habilidades tecnológicas y creativas; gente que quiere referentes reales, no gurús. El diferenciador es la combinación de construir, aprender y enseñar como un solo sistema, con evidencia pública y un método repetible. Zeew Space es el ecosistema donde se materializa esta marca: aprender construyendo, práctica desde el primer día.
+
+## Contenido principal
+
+- [Inicio / Portfolio](https://kamerrezz.com/): Publicaciones recientes del blog y acceso al resto del sitio
+- [Sobre mí](https://kamerrezz.com/about/): Quién es Kamerr Ezz, experiencia práctica y enfoque de aprendizaje
+- [Blog](https://kamerrezz.com/blog/): Artículos sobre desarrollo, proyectos y aprendizaje aplicado
+- [Proyectos](https://kamerrezz.com/projects/): Listado de proyectos reales con estado y descripción
+
+## Contacto y presencia
+
+- [Twitter / X @kamerrezz](https://twitter.com/kamerrezz): Cuenta principal de Kamerr Ezz
+- [GitHub kamerrezz](https://github.com/kamerrezz): Repositorios y actividad de desarrollo
+- [Zeew Space](https://zeew.space): Ecosistema educativo — cursos como proyectos reales, práctica desde el primer día
+
+## Recursos técnicos del sitio
+
+- [Sitemap](https://kamerrezz.com/sitemap-index.xml): Índice de páginas para crawlers
+- [RSS](https://kamerrezz.com/rss.xml): Feed de entradas del blog
+
+## Optional
+
+- [Blog — listado completo](https://kamerrezz.com/blog/): Todas las entradas del blog con descripción y fecha
+- [Proyectos — listado completo](https://kamerrezz.com/projects/): Todos los proyectos con estado (activo, en evolución)
