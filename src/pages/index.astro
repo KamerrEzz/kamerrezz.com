@@ -1,18 +1,33 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import ProfileHeader from "../components/ProfileHeader.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_TITLE, SITE_URL, TWITTER_HANDLE } from "../consts";
 import { getCollection } from "astro:content";
 
 const blogPosts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE_AUTHOR,
+  url: SITE_URL,
+  description: SITE_DESCRIPTION,
+  sameAs: [
+    `https://twitter.com/${TWITTER_HANDLE}`,
+    "https://github.com/kamerrezz",
+  ],
+  jobTitle: "Full-stack developer & builder-educator",
+  knowsAbout: ["full-stack development", "product building", "practical education", "entrepreneurship"],
+};
 ---
 
 <!doctype html>
 <html lang="es">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   </head>
   <body class="min-h-screen bg-[#0A0A0A] text-white">
     <div class="max-w-2xl mx-auto px-4 md:px-6 py-8">
