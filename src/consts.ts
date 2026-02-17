@@ -9,3 +9,6 @@ export const SITE_DESCRIPTION =
 export const SITE_URL = 'https://kamerrezz.com';
 export const TWITTER_HANDLE = 'kamerrezz';
 export const SITE_AUTHOR = 'Kamerr Ezz';
+
+/** Google Analytics 4 - Measurement ID */
+export const GA_MEASUREMENT_ID = 'G-4WM1S705JP';
