@@ -5,10 +5,43 @@ import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
 const sortedProjects = projects.sort((a, b) => {
+	const orderA = a.data.order !== undefined ? a.data.order : 9999;
+	const orderB = b.data.order !== undefined ? b.data.order : 9999;
+	if (orderA !== orderB) {
+		return orderA - orderB;
+	}
 	const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
 	const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
 	return dateB - dateA;
 });
+
+const starProjects = sortedProjects.filter(p => p.data.star);
+const otherProjects = sortedProjects.filter(p => !p.data.star);
+
+// Group other projects by category
+const categoryGroups = otherProjects.reduce((acc, project) => {
+    const cat = project.data.category || 'otros';
+    if (!acc[cat]) {
+        acc[cat] = [];
+    }
+    acc[cat].push(project);
+    return acc;
+}, {} as Record<string, typeof projects>);
+
+const categories = Object.keys(categoryGroups).sort();
+
+const getStatusText = (status?: string) => {
+	if (status === 'completed') return 'Completado';
+	if (status === 'active') return 'En Producción';
+	if (status === 'in-progress') return 'Construyendo';
+	return 'Evolucionando';
+};
+
+const getStatusColor = (status?: string) => {
+	return status === 'completed' || status === 'active' 
+		? 'text-green-400 border-green-400/30 bg-green-400/10'
+		: 'text-[#FAFF00] border-[#FAFF00]/30 bg-[#FAFF00]/10';
+};
 ---
 
 <!doctype html>
@@ -66,31 +99,27 @@ const sortedProjects = projects.sort((a, b) => {
 					</p>
 				</header>
 
-				{/* PROJECTS LIST */}
-				<section class="flex flex-col">
-					{sortedProjects.map((project, index) => {
-						const getStatusText = (status?: string) => {
-							if (status === 'completed') return 'Completado';
-							if (status === 'active') return 'En Producción';
-							if (status === 'in-progress') return 'Construyendo';
-							return 'Evolucionando';
-						};
+				{/* SECTION: PROYECTOS ESTRELLA */}
+				{starProjects.length > 0 && (
+					<section class="flex flex-col border-b-[1.5px] border-white/10">
+						<div class="px-8 py-6 border-b-[1.5px] border-[#d5338b]/30 bg-[#111111]/80 sticky top-14 z-40 backdrop-blur-md">
+							<h2 class="font-mono text-sm md:text-base font-black tracking-[0.3em] uppercase flex items-center gap-3 text-[#d5338b]">
+								<div class="w-3 h-3 bg-[#d5338b] shadow-[0_0_10px_#d5338b] animate-pulse"></div>
+								Proyectos Estrella
+							</h2>
+						</div>
 
-						const statusColor = project.data.status === 'completed' || project.data.status === 'active' 
-							? 'text-green-400 border-green-400/30 bg-green-400/10'
-							: 'text-[#FAFF00] border-[#FAFF00]/30 bg-[#FAFF00]/10';
-
-						return (
-							<article class="grid grid-cols-1 md:grid-cols-12 border-b-[1.5px] border-white/10 group">
+						{starProjects.map((project, index) => (
+							<article class="grid grid-cols-1 md:grid-cols-12 border-b-[1.5px] border-white/10 group bg-[#0C0C0C] last:border-b-0">
 								{/* Left Meta Information */}
-								<div class="md:col-span-5 p-8 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-white/10 flex flex-col justify-between group-hover:bg-white/[0.02] transition-colors relative">
+								<div class="md:col-span-5 p-8 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-white/10 flex flex-col justify-between group-hover:bg-white/[0.02] transition-colors relative z-0">
 									<div class="absolute top-4 left-4 font-mono text-6xl md:text-8xl font-black text-white/5 -z-10 group-hover:text-white/10 transition-colors">
-										{String(index + 1).padStart(2, '0')}
+										★{String(index + 1).padStart(2, '0')}
 									</div>
 									
 									<div class="mt-4 mb-10">
 										<div class="flex items-center gap-3 mb-4">
-											<span class={`px-2 py-1 flex items-center gap-2 border-[1.5px] font-mono text-[10px] uppercase font-bold tracking-widest ${statusColor}`}>
+											<span class={`px-2 py-1 flex items-center gap-2 border-[1.5px] font-mono text-[10px] uppercase font-bold tracking-widest ${getStatusColor(project.data.status)}`}>
 												<span class="w-1.5 h-1.5 bg-current rounded-full animate-pulse"></span>
 												{getStatusText(project.data.status)}
 											</span>
@@ -105,7 +134,6 @@ const sortedProjects = projects.sort((a, b) => {
 										</p>
 									</div>
 
-									{/* Tech flow */}
 									<div class="flex flex-wrap gap-2 mt-auto">
 										{(project.data.technologies || []).map(tech => (
 											<span class="px-2 py-1 border-[1.5px] border-white/10 font-mono text-[10px] uppercase tracking-widest text-zinc-500 bg-white/5">
@@ -116,24 +144,22 @@ const sortedProjects = projects.sort((a, b) => {
 								</div>
 
 								{/* Right Interaction / Preview */}
-								<div class="md:col-span-7 bg-[#111111] p-8 md:p-12 relative flex items-center justify-center overflow-hidden">
-									<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+								<div class="md:col-span-7 p-8 md:p-12 relative flex items-center justify-center overflow-hidden">
+									<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d5338b]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 									
-									<a href={`/projects/${project.id}/`} class="relative block w-full aspect-video border-[1.5px] border-white/20 bg-[#0A0A0A] shadow-[8px_8px_0_rgba(255,255,255,0.05)] group-hover:shadow-[12px_12px_0_#d5338b] group-hover:-translate-y-1 group-hover:-translate-x-1 transition-all duration-300 flex flex-col focus:outline-none">
-										{/* Toolbar */}
-										<div class="h-6 w-full border-b-[1.5px] border-white/10 flex items-center justify-between px-3 bg-white/5 shrink-0">
+									<a href={`/projects/${project.id}/`} class="relative block w-full aspect-video border-[1.5px] border-white/20 bg-[#0A0A0A] shadow-[8px_8px_0_rgba(213,51,139,0.3)] group-hover:shadow-[12px_12px_0_#d5338b] group-hover:-translate-y-2 group-hover:-translate-x-2 transition-all duration-300 flex flex-col focus:outline-none">
+										<div class="h-6 w-full border-b-[1.5px] border-white/10 flex items-center justify-between px-3 bg-[#111] shrink-0">
 											<div class="flex items-center gap-1.5">
-												<div class="w-2 h-2 rounded-full border-[1.5px] border-zinc-500 group-hover:border-[#d5338b] transition-colors"></div>
-												<div class="w-2 h-2 rounded-full border-[1.5px] border-zinc-600"></div>
-												<div class="w-2 h-2 rounded-full border-[1.5px] border-zinc-600"></div>
+												<div class="w-2 h-2 rounded-full border-[1.5px] border-[#d5338b]"></div>
+												<div class="w-2 h-2 rounded-full border-[1.5px] border-[#FAFF00]"></div>
+												<div class="w-2 h-2 rounded-full border-[1.5px] border-green-500"></div>
 											</div>
-											<span class="font-mono text-[9px] uppercase tracking-widest text-zinc-600 group-hover:text-[#d5338b] transition-colors">/{project.id}</span>
+											<span class="font-mono text-[9px] uppercase tracking-widest text-[#d5338b]">/{project.id}</span>
 										</div>
 										
-										{/* Content Area */}
 										<div class="flex-1 flex flex-col items-center justify-center relative z-10 p-6 text-center group-hover:bg-[#d5338b]/5 transition-colors">
 											<span class="font-mono text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400 group-hover:text-white transition-colors mb-4">
-												Ver Detalles
+												Explorar Proyecto Estrella
 											</span>
 											<div class="w-12 h-12 border-[1.5px] border-zinc-500 rounded-full flex items-center justify-center group-hover:bg-[#d5338b] group-hover:border-[#d5338b] group-hover:scale-110 transition-all">
 												<svg class="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -144,8 +170,70 @@ const sortedProjects = projects.sort((a, b) => {
 									</a>
 								</div>
 							</article>
-						);
-					})}
+						))}
+					</section>
+				)}
+
+				{/* SECTION: CATEGORIES */}
+				<section class="flex flex-col">
+					{categories.map((category) => (
+						<div class="border-b-[1.5px] border-white/10 last:border-b-0">
+							
+							{/* Category Header */}
+							<div class="px-8 py-4 border-b-[1.5px] border-white/10 bg-[#050505] flex items-center justify-between">
+								<h3 class="font-mono text-xs md:text-sm font-black tracking-[0.3em] uppercase text-zinc-300">
+									[{category}]
+								</h3>
+								<span class="font-mono text-[10px] font-bold tracking-widest text-zinc-500">
+									{categoryGroups[category].length} ITEMS
+								</span>
+							</div>
+
+							{/* Category Items Grid */}
+							<div class="grid grid-cols-1 md:grid-cols-2 divide-y-[1.5px] md:divide-y-0 md:divide-x-[1.5px] divide-white/10">
+								{categoryGroups[category].map(project => (
+									<a href={`/projects/${project.id}/`} class="group flex flex-col bg-[#0A0A0A] hover:bg-white/[0.03] transition-colors p-8 relative border-b-[1.5px] md:border-b-0 border-white/10 last:border-b-0">
+										<div class="flex items-center justify-between mb-4">
+											<span class={`px-2 py-1 flex items-center gap-1.5 border-[1.5px] font-mono text-[8px] sm:text-[9px] uppercase font-bold tracking-[0.2em] ${getStatusColor(project.data.status)}`}>
+												<span class="w-1 h-1 bg-current rounded-full"></span>
+												{getStatusText(project.data.status)}
+											</span>
+											<svg class="w-4 h-4 text-zinc-600 group-hover:text-[#d5338b] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+												<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+											</svg>
+										</div>
+										
+										<h4 class="text-xl sm:text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-[#FAFF00] transition-colors leading-tight">
+											{project.data.title}
+										</h4>
+										
+										<p class="text-sm text-zinc-400 font-light leading-relaxed line-clamp-2 mb-6 flex-1">
+											{project.data.description}
+										</p>
+
+										<div class="flex flex-wrap gap-1.5 mt-auto">
+											{(project.data.technologies || []).slice(0, 3).map(tech => (
+												<span class="px-2 py-0.5 border border-white/10 font-mono text-[9px] uppercase tracking-widest text-zinc-500 bg-transparent">
+													{tech}
+												</span>
+											))}
+											{(project.data.technologies || []).length > 3 && (
+												<span class="px-2 py-0.5 border border-white/10 font-mono text-[9px] uppercase tracking-widest text-zinc-500 bg-transparent">
+													+{project.data.technologies.length - 3}
+												</span>
+											)}
+										</div>
+									</a>
+								))}
+							</div>
+						</div>
+					))}
+
+					{categories.length === 0 && otherProjects.length === 0 && starProjects.length === 0 && (
+						<div class="p-16 text-center text-zinc-500 font-mono text-sm tracking-widest uppercase bg-[#111111]">
+							[ Aún no hay proyectos cargados ]
+						</div>
+					)}
 				</section>
 			</main>
 

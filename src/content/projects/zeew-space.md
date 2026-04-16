@@ -7,6 +7,8 @@ image: "https://zeew.space/imgs/zeew-square.jpg"
 technologies: ["React", "Node.js", "MongoDB", "Tailwind CSS"]
 # github: "https://github.com/kamerrezz/ai-chatbot"
 featured: true
+star: true
+order: 1
 status: "completed"
 date: "2024-01-20"
 startDate: "2024-01-05"

@@ -7,6 +7,8 @@ image: "https://raw.githubusercontent.com/KamerrEzz/mc-zoneroyale/main/zone-roya
 technologies: ["Java", "Minecraft Forge"]
 github: "https://github.com/KamerrEzz/mc-zoneroyale"
 featured: false
+star: true
+order: 2
 status: "completed"
 date: "2025-07-23"
 startDate: "2025-07-10"
