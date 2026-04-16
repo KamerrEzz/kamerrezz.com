@@ -8,7 +8,7 @@ technologies: ["Java", "Minecraft Forge"]
 github: "https://github.com/KamerrEzz/mc-zoneroyale"
 featured: false
 star: true
-order: 2
+order: 3
 status: "completed"
 date: "2025-07-23"
 startDate: "2025-07-10"
