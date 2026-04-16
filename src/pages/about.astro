@@ -1,267 +1,236 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import ProfileHeader from '../components/ProfileHeader.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark scroll-smooth">
 	<head>
 		<BaseHead
 			title={`Sobre mí - ${SITE_TITLE}`}
 			description="Kamerr Ezz: desarrollador full-stack y emprendedor creativo. Builder-educator: construye productos reales y convierte el proceso en educación práctica. Zeew Space, transparencia operativa y aprendizaje aplicado."
 		/>
 	</head>
-	<body class="min-h-screen bg-[#0A0A0A] text-white">
-		<div class="max-w-2xl mx-auto px-4 md:px-6 py-8">
-			<ProfileHeader activeTab="about" />
-
-			{/* About Sections */}
-			<div class="space-y-6">
-				{/* Sobre mí Card */}
-				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
-					<div class="flex items-center gap-2 mb-4">
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							style="color: #d5338b;"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-							></path>
-						</svg>
-						<h2 class="text-lg font-semibold" style="color: #d5338b;">
-							Sobre mí
-						</h2>
+	
+	<body class="bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d5338b] selection:text-white" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 32px 32px;">
+		
+		<div class="max-w-[1200px] mx-auto min-h-screen border-x-[1.5px] border-white/10 bg-[#0A0A0A]/90 backdrop-blur-md flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.9)]">
+			
+			{/* ── TOP NAV ── */}
+			<nav class="flex items-stretch border-b-[1.5px] border-white/10 sticky top-0 z-50 bg-[#0A0A0A] h-14">
+				<a href="/" class="flex items-center px-4 md:px-8 font-mono text-[11px] md:text-sm font-black tracking-widest uppercase text-zinc-500 transition-colors hover:text-white hover:bg-white/10 border-r-[1.5px] border-white/10 w-max shrink-0">
+					<span class="w-2 h-2 bg-zinc-600 mr-2 transition-colors group-hover:bg-white"></span>
+					KamerrEzz
+				</a>
+				<div class="flex-1 flex justify-end">
+					<a href="/projects" class="hidden sm:flex items-center justify-center px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white hover:bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						Proyectos
+					</a>
+					<a href="/blog" class="hidden sm:flex items-center justify-center px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white hover:bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						Blog
+					</a>
+					<div class="hidden sm:flex items-center justify-center px-6 font-mono text-xs font-bold tracking-widest uppercase text-white bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						<span class="w-1.5 h-1.5 bg-[#d5338b] mr-2 shadow-[0_0_8px_#d5338b]"></span>
+						Sobre mí
 					</div>
-					<div class="space-y-3 text-white text-sm md:text-base leading-relaxed">
-						<p>
-							Soy desarrollador full-stack y emprendedor creativo. Mi identidad
-							se resume en <strong>builder-educator</strong>: mentalidad de
-							producto con corazón de maestro. Construyo productos reales y
-							convierto ese proceso en educación práctica — desde la idea hasta
-							la ejecución, sin ocultar iteraciones, fallos ni decisiones
-							técnicas.
-						</p>
-						<p>
-							La promesa es <strong>transparencia operativa</strong>: no hay
-							"secretos", hay procesos. Si algo no funciona, lo desarmo hasta
-							entenderlo y luego lo explico con claridad. No comparto solo
-							resultados: muestro decisiones, errores y correcciones para que
-							otros aprendan a pensar sistemas, no solo a usar herramientas.
-						</p>
-						<p>
-							Mi autoridad no viene de títulos, sino de evidencia pública,
-							coherencia y persistencia documentando proyectos y aprendizaje
-							aplicado.
-						</p>
-						<p class="text-sm">
-							<a
-								href="/blog/quien-es-kamerr-ezz/"
-								class="underline hover:no-underline"
-								style="color: #d5338b;"
-							>
-								Más sobre mí en «Quién es Kamerr Ezz»
-							</a>
-						</p>
-					</div>
+					<a href="https://github.com/KamerrEzz" target="_blank" class="flex sm:hidden lg:flex items-center justify-center px-4 md:px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-[#d5338b] hover:bg-[#d5338b]/10 border-l-[1.5px] border-white/10 transition-all">
+						GitHub ↗
+					</a>
 				</div>
+			</nav>
 
-				{/* Experiencia práctica Card */}
-				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
-					<div class="flex items-center gap-2 mb-4">
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							style="color: #d5338b;"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-							></path>
-						</svg>
-						<h2 class="text-lg font-semibold" style="color: #d5338b;">
-							Experiencia práctica
-						</h2>
+			{/* ── MAIN CONTENT ── */}
+			<main class="flex-1 flex flex-col">
+				
+				{/* PAGE HEADER */}
+				<header class="p-8 md:p-12 lg:p-20 border-b-[1.5px] border-white/10 relative overflow-hidden group">
+					<div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+					
+					<div class="mb-4">
+						<span class="px-3 py-1 bg-[#FAFF00] text-black shadow-[3px_3px_0_rgba(255,255,255,0.2)] font-mono text-xs font-black uppercase tracking-widest">
+							Identidad ///
+						</span>
 					</div>
-					<div class="space-y-4">
-						<div class="flex gap-4">
-							<div class="shrink-0">
-								<div
-									class="w-2 h-2 rounded-full mt-2"
-									style="background-color: #d5338b;"
-								></div>
-							</div>
-							<div class="flex-1">
-								<div class="text-sm text-[#9CA3AF] mb-1">2023 - Presente</div>
-								<h3 class="text-white font-semibold mb-1">Zeew Space</h3>
-								<p class="text-[#9CA3AF] text-sm">
-									Ecosistema educativo con el eslogan "Un espacio para aprender"
-									y la misión de romper con el ciclo de la educación tradicional.
-									Nació en febrero de 2023 como evolución de Zeew API (2019):
-									cursos convertidos en proyectos reales, práctica desde el
-									primer día.
-								</p>
-							</div>
-						</div>
 
-						<div class="flex gap-4">
-							<div class="shrink-0">
-								<div
-									class="w-2 h-2 rounded-full mt-2"
-									style="background-color: #d5338b;"
-								></div>
-							</div>
-							<div class="flex-1">
-								<div class="text-sm text-[#9CA3AF] mb-1">2022 - 2024</div>
-								<h3 class="text-white font-semibold mb-1">
-									Proyectos de validación y pivotes
-								</h3>
-								<p class="text-[#9CA3AF] text-sm">
-									Experimentación con diferentes modelos de producto,
-									documentando aprendizajes y pivotes. Zeew Space funciona como
-									prueba y extensión de la marca: mi manera de aprender y de
-									enseñar son la misma.
-								</p>
-							</div>
-						</div>
-
-						<div class="flex gap-4">
-							<div class="shrink-0">
-								<div
-									class="w-2 h-2 rounded-full mt-2"
-									style="background-color: #d5338b;"
-								></div>
-							</div>
-							<div class="flex-1">
-								<div class="text-sm text-[#9CA3AF] mb-1">2016 - 2022</div>
-								<h3 class="text-white font-semibold mb-1">
-									KsGrapin, Zeew API y primeros prototipos
-								</h3>
-								<p class="text-[#9CA3AF] text-sm">
-									Creación de contenido y diseño bajo KsGrapin; luego Zeew API
-									(REST para imágenes). Construcción de herramientas internas,
-									proyectos personales y aprendizaje de desarrollo web.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				{/* Pilares y enfoque Card */}
-				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
-					<div class="flex items-center gap-2 mb-4">
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							style="color: #d5338b;"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6z"
-							></path>
-						</svg>
-						<h2 class="text-lg font-semibold" style="color: #d5338b;">
-							Pilares temáticos
-						</h2>
-					</div>
-					<div class="space-y-3 text-white text-sm md:text-base leading-relaxed">
-						<p>
-							Todo lo que hago se organiza en tres ejes: <strong>aprendizaje y
-							desarrollo de habilidades</strong> (herramientas y metodologías
-							aplicadas), <strong>construcción y evolución de proyectos</strong>
-							(cómo nacen y se resuelven problemas reales en productos) y
-							<strong>mentalidad emprendedora</strong> (disciplina, decisiones,
-							errores y progreso sin promesas vacías).
-						</p>
-					</div>
-				</div>
-
-				{/* Aprendizaje y stack Card */}
-				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
-					<div class="flex items-center gap-2 mb-4">
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							style="color: #d5338b;"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-							></path>
-						</svg>
-						<h2 class="text-lg font-semibold" style="color: #d5338b;">
-							Aprendizaje continuo y stack
-						</h2>
-					</div>
-					<div class="space-y-3 text-white text-sm md:text-base leading-relaxed">
-						<p>
-							Aprendo de forma autodidacta y aplicada: estudio, práctica y
-							experimentación en proyectos reales. Valoro más la experiencia
-							que los títulos formales en el desarrollo de software.
-						</p>
-						<p class="text-[#9CA3AF] text-sm">
-							Stack habitual: React, Tailwind, Express, TypeScript, PostgreSQL.
-							También diseño (Figma, Photoshop, Illustrator, After Effects) y
-							he creado tutoriales y cursos en YouTube y Zeew Space — desde
-							dashboards para bots de Discord hasta cursos de React.
-						</p>
-					</div>
-				</div>
-
-				{/* Con quién conecto Card */}
-				<div class="bg-[#1A1A1A] rounded-lg p-6 border border-[#374151]">
-					<div class="flex items-center gap-2 mb-4">
-						<svg
-							class="w-5 h-5"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-							style="color: #d5338b;"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-							></path>
-						</svg>
-						<h2 class="text-lg font-semibold" style="color: #d5338b;">
-							Con quién conecto
-						</h2>
-					</div>
-					<p class="text-white text-sm md:text-base leading-relaxed">
-						Me dirijo a gente autodidacta que busca independencia y crecimiento
-						con habilidades tecnológicas y creativas; a quienes quieren
-						referentes reales, no gurús, y necesitan guía sincera para iniciar
-						sin recursos ni contactos. La relación se basa en confianza por
-						honestidad y claridad: transmitir control intelectual sin presumir,
-						demostrando con trabajo y documentación.
+					<h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter text-[#FAFAFA] mb-6">
+						SOBRE <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-[#d5338b]">MÍ.</span>
+					</h1>
+					
+					<p class="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed font-light">
+						Desarrollador full-stack y emprendedor creativo. De la misma forma en que el código estructura sistemas, uso el software para diseñar herramientas educativas funcionales.
 					</p>
-				</div>
-			</div>
+				</header>
 
-			{/* Footer */}
-			<footer class="mt-12 pt-8 text-center text-sm text-[#9CA3AF]">
-				<p>© Kamerr Ezz — zeew.space</p>
+				{/* CONTENT SECTIONS GRID */}
+				<div class="grid grid-cols-1 lg:grid-cols-12 divide-y-[1.5px] lg:divide-y-0 lg:divide-x-[1.5px] divide-white/10 border-b-[1.5px] border-white/10">
+					
+					{/* LEFT COLUMN: Main Info */}
+					<div class="lg:col-span-8 flex flex-col divide-y-[1.5px] divide-white/10 bg-[#0C0C0C]">
+						
+						{/* Intro Section */}
+						<section class="p-8 md:p-12 hover:bg-white/[0.02] transition-colors relative group">
+							<div class="flex items-center gap-3 mb-6">
+								<div class="w-10 h-10 border-[1.5px] border-[#d5338b] bg-[#d5338b]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+									<svg class="w-5 h-5 text-[#d5338b]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+								</div>
+								<h2 class="text-2xl font-black uppercase tracking-tight text-white">Filosofía Operativa</h2>
+							</div>
+							
+							<div class="space-y-4 text-zinc-300 text-lg leading-relaxed font-light">
+								<p>
+									Mi identidad se resume en <strong class="text-white font-bold">builder-educator</strong>: mentalidad de producto con corazón de maestro. Construyo productos reales y convierto ese proceso en educación práctica — desde la idea hasta la ejecución, sin ocultar iteraciones, fallos ni decisiones técnicas.
+								</p>
+								<p>
+									La promesa corporativa es la <strong class="text-white font-bold">transparencia operativa</strong>: no hay "secretos", hay procesos. Si algo no funciona, lo desarmo hasta entenderlo y luego lo explico con claridad. No comparto solo resultados: muestro decisiones, errores y correcciones para que otros aprendan a <span class="text-[#d5338b]">pensar sistemas, no solo a usar herramientas.</span>
+								</p>
+								<p class="text-zinc-400">
+									Mi autoridad no viene de títulos, sino de evidencia pública, coherencia y persistencia documentando proyectos y aprendizaje aplicado.
+								</p>
+							</div>
+
+							<div class="mt-8">
+								<a href="/blog/quien-es-kamerr-ezz/" class="inline-flex items-center text-[#d5338b] hover:text-white font-mono text-xs font-bold uppercase tracking-[0.2em] border-b-[1.5px] border-[#d5338b] hover:border-white pb-1 transition-all">
+									Leer manifiesto completo →
+								</a>
+							</div>
+						</section>
+
+						{/* Experience Section */}
+						<section class="p-8 md:p-12 hover:bg-white/[0.02] transition-colors relative group">
+							<div class="flex items-center gap-3 mb-10">
+								<div class="w-10 h-10 border-[1.5px] border-[#FAFF00] bg-[#FAFF00]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+									<svg class="w-5 h-5 text-[#FAFF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+								</div>
+								<h2 class="text-2xl font-black uppercase tracking-tight text-white">Línea de Tiempo</h2>
+							</div>
+
+							<div class="space-y-8 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[1.5px] before:bg-gradient-to-b before:from-white/20 before:to-transparent">
+								
+								{/* Exp Item */}
+								<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+									<div class="flex items-center justify-center w-5 h-5 rounded-full border-[1.5px] border-[#d5338b] bg-[#111] shadow-[0_0_10px_#d5338b] text-slate-500 group-[.is-active]:text-emerald-50 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"></div>
+									<div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-6 border-[1.5px] border-white/10 bg-[#0A0A0A] hover:-translate-y-1 transition-transform group-hover:border-white/20">
+										<div class="flex items-center justify-between mb-2">
+											<span class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">2023 - Presente</span>
+										</div>
+										<h3 class="font-bold text-white text-xl mb-1">Zeew Space</h3>
+										<p class="text-zinc-400 text-sm leading-relaxed">Ecosistema educativo con el eslogan "Un espacio para aprender". Cursos convertidos en proyectos reales, práctica desde el primer día rompiendo el ciclo de la educación tradicional.</p>
+									</div>
+								</div>
+
+								{/* Exp Item */}
+								<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+									<div class="flex items-center justify-center w-5 h-5 rounded-full border-[1.5px] border-white/20 bg-[#111] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"></div>
+									<div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-6 border-[1.5px] border-white/10 bg-[#0A0A0A] hover:-translate-y-1 transition-transform group-hover:border-white/20">
+										<div class="flex items-center justify-between mb-2">
+											<span class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">2022 - 2024</span>
+										</div>
+										<h3 class="font-bold text-white text-xl mb-1">Pivotes Base</h3>
+										<p class="text-zinc-400 text-sm leading-relaxed">Experimentación con modelos de producto. Zeew Space funciona como prueba y extensión de la marca: mi manera de aprender y enseñar son la misma en la práctica.</p>
+									</div>
+								</div>
+
+								{/* Exp Item */}
+								<div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+									<div class="flex items-center justify-center w-5 h-5 rounded-full border-[1.5px] border-white/20 bg-[#111] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10"></div>
+									<div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-1.5rem)] p-6 border-[1.5px] border-white/10 bg-[#0A0A0A] hover:-translate-y-1 transition-transform group-hover:border-white/20">
+										<div class="flex items-center justify-between mb-2">
+											<span class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">2016 - 2022</span>
+										</div>
+										<h3 class="font-bold text-white text-xl mb-1">Fundamentos</h3>
+										<p class="text-zinc-400 text-sm leading-relaxed">Creación de contenido bajo KsGrapin; Zeew API (REST). Desarrollo de herramientas internas, aprendizaje forzado de frontend y arquitectura.</p>
+									</div>
+								</div>
+
+							</div>
+						</section>
+					</div>
+
+					{/* RIGHT COLUMN: Sidebar Stats & Pillars */}
+					<div class="lg:col-span-4 flex flex-col divide-y-[1.5px] divide-white/10 bg-[#111111]">
+						
+						{/* Pillars */}
+						<section class="p-8 hover:bg-white/[0.02] transition-colors">
+							<h3 class="font-mono text-sm font-black tracking-[0.2em] text-white uppercase mb-6 flex items-center gap-2">
+								<span class="w-1.5 h-1.5 bg-[#d5338b]"></span>
+								3 Pilares
+							</h3>
+							<ul class="space-y-6">
+								<li class="p-4 border-[1.5px] border-white/10 bg-[#0A0A0A]">
+									<h4 class="text-white font-bold mb-1">1. Desarrollo de Habilidades</h4>
+									<p class="text-sm text-zinc-400">Herramientas y metodologías aplicadas sin distracciones.</p>
+								</li>
+								<li class="p-4 border-[1.5px] border-white/10 bg-[#0A0A0A]">
+									<h4 class="text-white font-bold mb-1">2. Evolución de Proyectos</h4>
+									<p class="text-sm text-zinc-400">Resolviendo problemas en interfaces y backends al instante.</p>
+								</li>
+								<li class="p-4 border-[1.5px] border-white/10 bg-[#0A0A0A]">
+									<h4 class="text-white font-bold mb-1">3. Cero Promesas Vacías</h4>
+									<p class="text-sm text-zinc-400">Progreso documentado sin humo empresarial. Disciplina brutal.</p>
+								</li>
+							</ul>
+						</section>
+
+						{/* Stack Info */}
+						<section class="p-8 hover:bg-white/[0.02] transition-colors">
+							<h3 class="font-mono text-sm font-black tracking-[0.2em] text-white uppercase mb-6 flex items-center gap-2">
+								<span class="w-1.5 h-1.5 bg-[#FAFF00]"></span>
+								Armamento
+							</h3>
+							
+							<div class="flex flex-wrap gap-2 mb-6">
+								{['React', 'Tailwind', 'Astro', 'TypeScript', 'Node.js', 'Express', 'PostgreSQL'].map(tech => (
+									<span class="px-2 py-1 border-[1.5px] border-white/10 font-mono text-[10px] uppercase tracking-widest text-zinc-300 bg-white/5">
+										{tech}
+									</span>
+								))}
+							</div>
+							
+							<div class="h-[1.5px] w-full bg-white/10 mb-6"></div>
+
+							<p class="text-sm text-zinc-400 font-light leading-relaxed">
+								También diseño en el ecosistema <strong>Adobe (Ps, Ai, Ae) y Figma.</strong> He transformado interfaces desde dashboards para bots de Discord hasta infraestructuras complejas para Startups Web.
+							</p>
+						</section>
+
+						{/* Audience target */}
+						<section class="p-8 bg-[#d5338b] text-white">
+							<h3 class="font-mono text-sm font-black tracking-[0.2em] uppercase mb-4 text-[#0A0A0A]">
+								/// PARA QUIÉN ES ESTO
+							</h3>
+							<p class="text-sm font-medium leading-relaxed drop-shadow-md">
+								Gente autodidacta buscando independencia. Personas que necesitan referentes reales, no gurús. Aquí transmitimos control intelectual a través de demostraciones con trabajo puro.
+							</p>
+						</section>
+						
+					</div>
+				</div>
+			</main>
+
+			{/* ── FOOTER ── */}
+			<footer class="bg-[#111111]">
+				<div class="p-8 md:p-16 flex flex-col items-center justify-center text-center border-b-[1.5px] border-white/10 group">
+					<span class="font-mono text-xs text-zinc-500 uppercase tracking-[0.3em] mb-4">¿Tienes una idea en mente?</span>
+					<a href="https://zeew.space" target="_blank" class="text-4xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-600 hover:scale-105 transition-transform">
+						HABLEMOS.
+					</a>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-3 divide-y-[1.5px] md:divide-y-0 md:divide-x-[1.5px] divide-white/10 text-center">
+					<div class="p-6 flex items-center justify-center gap-3">
+						<span class="w-2.5 h-2.5 bg-green-500 shadow-[0_0_12px_#22c55e]"></span>
+						<span class="font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase text-white">Disponible</span>
+					</div>
+					<div class="p-6 flex flex-wrap gap-4 items-center justify-center">
+						<a href="https://github.com/KamerrEzz" target="_blank" class="font-mono text-[10px] lg:text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors">GitHub</a>
+						<span class="text-zinc-600">/</span>
+						<a href="https://linkedin.com/in/KamerrEzz" target="_blank" class="font-mono text-[10px] lg:text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors">LinkedIn</a>
+					</div>
+					<div class="p-6 flex items-center justify-center">
+						<span class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">© {new Date().getFullYear()} KamerrEzz</span>
+					</div>
+				</div>
 			</footer>
+			
 		</div>
 	</body>
 </html>
