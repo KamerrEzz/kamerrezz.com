@@ -2,163 +2,196 @@
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
 
 type Props = CollectionEntry<'projects'>['data'];
 
 const { title, description, image, technologies, demo, github, status, date } = Astro.props;
+
+const getStatusText = (status?: string) => {
+	if (status === 'completed') return 'Completado';
+	if (status === 'active') return 'En Producción';
+	if (status === 'in-progress') return 'Construyendo';
+	return 'Evolucionando';
+};
+
+const getStatusColor = (status?: string) => {
+	return status === 'completed' || status === 'active' 
+		? 'text-green-400 border-green-400/30 bg-green-400/10'
+		: 'text-[#FAFF00] border-[#FAFF00]/30 bg-[#FAFF00]/10';
+};
 ---
 
-<html lang="es">
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-				max-width: 800px;
-				width: 100%;
-				height: auto;
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.meta {
-				margin-bottom: 1em;
-				color: rgb(var(--gray));
-				text-align: center;
-			}
-			.status {
-				display: inline-block;
-				font-size: 0.875rem;
-				padding: 0.25rem 0.75rem;
-				border-radius: 20px;
-				font-weight: 500;
-				margin: 0 0.5rem;
-			}
-			.status.completed {
-				background: #d4edda;
-				color: #155724;
-			}
-			.status.in-progress {
-				background: #fff3cd;
-				color: #856404;
-			}
-			.technologies {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.5rem;
-				justify-content: center;
-				margin: 1em 0;
-			}
-			.tech-tag {
-				background: #e3f2fd;
-				color: #1976d2;
-				padding: 0.25rem 0.75rem;
-				border-radius: 20px;
-				font-size: 0.875rem;
-			}
-			.project-links {
-				display: flex;
-				gap: 1rem;
-				justify-content: center;
-				margin: 2em 0;
-			}
-			.btn {
-				display: inline-block;
-				padding: 0.75rem 1.5rem;
-				text-decoration: none;
-				border-radius: 6px;
-				transition: all 0.3s ease;
-				font-weight: 500;
-			}
-			.btn.primary {
-				background: #667eea;
-				color: white;
-			}
-			.btn.primary:hover {
-				background: #5a6fd8;
-			}
-			.btn.secondary {
-				background: #6c757d;
-				color: white;
-			}
-			.btn.secondary:hover {
-				background: #5a6268;
-			}
-		</style>
 	</head>
-
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{image ? (
-						<Image width={800} height={400} src={image} alt={title} />
-					) : (
-						<Image width={800} height={400} src={FallbackImage} alt={`${title} - Imagen no disponible`} />
-					)}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="meta">
-							{status && (
-								<span class={`status ${status}`}>
-									{status === 'completed' ? '✅ Completado' : '🚧 En desarrollo'}
-								</span>
-							)}
-							{date && (
-								<time>{date.toLocaleDateString('es-ES')}</time>
-							)}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+	
+	<body class="bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d5338b] selection:text-white" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 32px 32px;">
+		
+		<div class="max-w-[1200px] mx-auto min-h-screen border-x-[1.5px] border-white/10 bg-[#0A0A0A]/90 backdrop-blur-md flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.9)]">
+			
+			{/* ── TOP NAV ── */}
+			<nav class="flex items-stretch border-b-[1.5px] border-white/10 sticky top-0 z-50 bg-[#0A0A0A] h-14">
+				<a href="/" class="flex items-center px-4 md:px-8 font-mono text-[11px] md:text-sm font-black tracking-widest uppercase text-zinc-500 transition-colors hover:text-white hover:bg-white/10 border-r-[1.5px] border-white/10 w-max shrink-0">
+					<span class="w-2 h-2 bg-zinc-600 mr-2 transition-colors group-hover:bg-white"></span>
+					KamerrEzz
+				</a>
+				<div class="flex-1 flex items-center px-4 overflow-hidden">
+					<div class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase truncate whitespace-nowrap hidden sm:block">
+						/projects/{title.substring(0, 30)}{title.length > 30 ? '...' : ''}
 					</div>
-					<slot />
-					
-					{(demo || github) && (
-						<div class="project-links">
-							{demo && (
-								<a href={demo} target="_blank" rel="noopener noreferrer" class="btn primary">
-									🔗 Ver Demo
-								</a>
+				</div>
+				<div class="flex shrink-0">
+					<a href="/projects" class="flex items-center justify-center px-4 md:px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white hover:bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						← Volver
+					</a>
+				</div>
+			</nav>
+
+			{/* ── MAIN CONTENT ── */}
+			<main class="flex-1 flex flex-col">
+				
+				{/* PROJECT HEADER */}
+				<header class="p-8 md:p-12 lg:p-20 border-b-[1.5px] border-white/10 relative overflow-hidden group bg-[#080808]">
+					<div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+
+					<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+						
+						{/* Title & Desc */}
+						<div class="lg:col-span-8 flex flex-col justify-center">
+							<div class="mb-6 flex flex-wrap items-center gap-3">
+								<span class="px-3 py-1 bg-white/5 border-[1.5px] border-white/20 text-white font-mono text-[10px] font-black uppercase tracking-widest">
+									Proyecto Documentado
+								</span>
+								{status && (
+									<span class={`px-3 py-1 flex items-center gap-2 border-[1.5px] font-mono text-[10px] uppercase font-bold tracking-widest ${getStatusColor(status)}`}>
+										<span class="w-1.5 h-1.5 bg-current rounded-full animate-pulse"></span>
+										{getStatusText(status)}
+									</span>
+								)}
+							</div>
+
+							<h1 class="text-5xl sm:text-7xl font-black tracking-tighter text-[#FAFAFA] mb-6 leading-[1.05]">
+								{title}
+							</h1>
+							
+							<p class="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed font-light">
+								{description}
+							</p>
+						</div>
+
+						{/* Actions & Meta */}
+						<div class="lg:col-span-4 flex flex-col justify-end gap-6 lg:border-l-[1.5px] lg:border-white/10 lg:pl-8">
+							{/* Links */}
+							<div class="flex flex-col gap-3">
+								{demo && (
+									<a href={demo} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-6 py-4 bg-[#d5338b] text-white font-mono text-xs font-black uppercase tracking-widest shadow-[4px_4px_0_0_#FAFAFA] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[6px_6px_0_0_#FAFAFA] transition-all focus:outline-none">
+										<span>Ver Proyecto En Vivo</span>
+										<span>↗</span>
+									</a>
+								)}
+								{github && (
+									<a href={github} target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-6 py-4 bg-[#111] border-[1.5px] border-white/20 text-zinc-300 font-mono text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all focus:outline-none">
+										<span>Código / GitHub</span>
+										<span>↗</span>
+									</a>
+								)}
+							</div>
+
+							{/* Tech Stack */}
+							{technologies && technologies.length > 0 && (
+								<div class="mt-4 pt-6 border-t-[1.5px] border-white/10">
+									<h4 class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 mb-3 font-bold">Resumen Técnico:</h4>
+									<div class="flex flex-wrap gap-2">
+										{technologies.map(tech => (
+											<span class="px-2 py-1 border border-white/10 font-mono text-[9px] uppercase tracking-widest text-zinc-300 bg-white/5">
+												{tech}
+											</span>
+										))}
+									</div>
+								</div>
 							)}
-							{github && (
-								<a href={github} target="_blank" rel="noopener noreferrer" class="btn secondary">
-									💻 GitHub
-								</a>
+							
+							{/* Date Output */}
+							{date && (
+							    <div class="mt-2 font-mono text-[10px] text-zinc-600 uppercase tracking-widest">
+									Lanzamiento: {date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long' })}
+							    </div>
 							)}
 						</div>
-					)}
+
+					</div>
+				</header>
+
+				{/* PROJECT PREVIEW WINDOW */}
+				<div class="w-full border-b-[1.5px] border-white/10 bg-[#111111] p-4 sm:p-8 lg:p-12 flex items-center justify-center">
+					<div class="w-full max-w-5xl relative border-[1.5px] border-white/20 shadow-[12px_12px_0_rgba(255,255,255,0.03)] bg-[#0A0A0A] flex flex-col">
+						{/* Fake Browser Top Bar */}
+						<div class="h-8 w-full border-b-[1.5px] border-white/10 flex items-center justify-between px-4 bg-white/5 shrink-0">
+							<div class="flex items-center gap-2">
+								<div class="w-2.5 h-2.5 rounded-full border-[1.5px] border-[#d5338b] bg-[#d5338b]/20"></div>
+								<div class="w-2.5 h-2.5 rounded-full border-[1.5px] border-[#FAFF00] bg-[#FAFF00]/20"></div>
+								<div class="w-2.5 h-2.5 rounded-full border-[1.5px] border-green-500 bg-green-500/20"></div>
+							</div>
+							<span class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">Preview</span>
+						</div>
+						
+						{/* Hero Image / Content */}
+						<div class="w-full aspect-video md:aspect-[21/9] overflow-hidden bg-black flex items-center justify-center">
+							{image ? (
+								<Image width={1440} height={720} src={image} alt={title} class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500" />
+							) : (
+								<Image width={1440} height={720} src={FallbackImage} alt={`${title} Fallback`} class="w-full h-full object-cover opacity-50 grayscale" />
+							)}
+						</div>
+					</div>
 				</div>
-			</article>
-		</main>
-		<Footer />
+
+				{/* ARTICLE BODY */}
+				<article class="p-8 md:p-12 lg:p-20 bg-[#0C0C0C]">
+					<div class="max-w-3xl mx-auto prose prose-invert prose-zinc prose-lg lg:prose-xl 
+								prose-headings:font-black prose-headings:tracking-tight prose-headings:text-white
+								prose-h1:text-4xl prose-h2:text-3xl prose-h3:text-2xl
+								prose-h2:border-b-[1.5px] prose-h2:border-white/10 prose-h2:pb-4
+								prose-a:text-[#FAFF00] hover:prose-a:text-white prose-a:underline-offset-4 prose-a:transition-colors
+								prose-p:text-zinc-300 prose-p:leading-relaxed prose-p:font-light
+								prose-strong:text-white prose-strong:font-bold
+								prose-ul:border-l-[1.5px] prose-ul:border-white/10 prose-ul:pl-6 prose-li:marker:text-[#d5338b]
+								prose-code:text-[#FAFF00] prose-code:bg-[#FAFF00]/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:rounded-none prose-code:before:content-none prose-code:after:content-none
+								prose-pre:bg-[#111] prose-pre:border-[1.5px] prose-pre:border-white/10 prose-pre:shadow-[4px_4px_0_rgba(255,255,255,0.05)] prose-pre:rounded-none lg:prose-pre:-mx-12
+								prose-blockquote:border-l-[3px] prose-blockquote:border-[#d5338b] prose-blockquote:bg-[#d5338b]/5 prose-blockquote:px-6 prose-blockquote:py-2 prose-blockquote:font-normal prose-blockquote:text-zinc-300
+								prose-img:border-[1.5px] prose-img:border-white/20 prose-img:shadow-[4px_4px_0_rgba(255,255,255,0.05)] lg:prose-img:-mx-12 lg:prose-img:max-w-[calc(100%+6rem)]
+								prose-hr:border-white/10">
+						<slot />
+					</div>
+				</article>
+
+			</main>
+
+			{/* ── FOOTER ── */}
+			<footer class="border-t-[1.5px] border-white/10 bg-[#111111]">
+				<div class="grid grid-cols-1 md:grid-cols-2 divide-y-[1.5px] md:divide-y-0 md:divide-x-[1.5px] divide-white/10 text-center">
+					<div class="p-8 md:p-12 flex flex-col gap-4 items-center justify-center">
+						<span class="w-10 h-10 rounded-full border-[1.5px] border-[#FAFF00] flex items-center justify-center text-[#FAFF00]">
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+						</span>
+						<a href="/projects" class="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-white hover:text-[#FAFF00] transition-colors underline underline-offset-8 decoration-white/20 hover:decoration-[#FAFF00]">
+							Volver al Portafolio
+						</a>
+					</div>
+					<div class="p-8 md:p-12 flex flex-col gap-4 items-center justify-center">
+						<span class="w-10 h-10 rounded-full border-[1.5px] border-[#d5338b] flex items-center justify-center text-[#d5338b]">
+							<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+						</span>
+						<a href="https://zeew.space" target="_blank" class="font-mono text-xs sm:text-sm font-bold tracking-widest uppercase text-white hover:text-[#d5338b] transition-colors underline underline-offset-8 decoration-white/20 hover:decoration-[#d5338b]">
+							¿Te interesa trabajar juntos?
+						</a>
+					</div>
+				</div>
+			</footer>
+			
+		</div>
 	</body>
 </html>
