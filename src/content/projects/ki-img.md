@@ -5,7 +5,6 @@ type: "personal"
 category: "web-development"
 image: "https://raw.githubusercontent.com/KamerrEzz/mc-zoneroyale/main/zone-royale-banner.jpg"
 technologies: ["expressjs", "handlebars"]
-github: "https://github.com/KamerrEzz/ki.img"
 featured: false
 status: "completed"
 date: "2020-03-14"
