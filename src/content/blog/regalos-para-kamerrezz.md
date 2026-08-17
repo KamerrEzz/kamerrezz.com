@@ -2,7 +2,7 @@
 title: "Regalos para Kamerr Ezz: mi wishlist de Amazon y mi PayPal"
 description: "¿Quieres agradecerme por una ayuda, un consejo o simplemente por las ganas de apoyar? Aquí te dejo mi wishlist de Amazon México y mi PayPal para quien quiera regalarme algo."
 pubDate: "2026-08-17"
-heroImage: '../../assets/blog-placeholder-1.jpg'
+heroImage: '../../assets/blog-placeholder-2.jpg'
 ---
 
 De vez en cuando alguien me pregunta lo mismo: *"oye, ¿cómo te puedo regalar algo?"* o *"¿tienes wishlist o PayPal?"*. Me lo han preguntado amigos, seguidores y hasta gente random a la que ayudé una sola vez con algún problema de código. Así que en lugar de repetir la misma respuesta cada rato, mejor lo dejo aquí, ordenado, para quien lo busque.
