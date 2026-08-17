@@ -21,9 +21,9 @@ Tengo una lista de deseos en Amazon con cosas que me sirven o se me antojan. Pue
 
 ## Mi PayPal
 
-Si prefieres mandar algo directo, este es mi PayPal:
+Si prefieres mandar algo directo, este es mi PayPal (lo escribo así para que los bots de spam no se den un banquete):
 
-**kamerrezz@hotmail.com**
+**kamerrezz [en] hotmail [punto] com**
 
 ## ¿Cuánto? Lo que quieras
 
