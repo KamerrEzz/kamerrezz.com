@@ -2,29 +2,32 @@
 
 ## Identidad
 
-- **Nombre:** Uziel Liborio
+- **Nombre:** Uziel Procopio Kauil
 - **Alias:** KamerrEzz
 - **Ubicación:** Playa del Carmen, Quintana Roo, México
-- **Email:** uzielliborio@gmail.com
-- **LinkedIn:** linkedin.com/in/KamerrEzz
-- **GitHub:** github.com/KamerrEzz
+- **Email:** dev@kamerrezz.com
+- **LinkedIn:** linkedin.com/in/kamerrezz
+- **GitHub:** github.com/kamerrezz
 - **Portafolio:** kamerrezz.com
 
 ---
 
 ## Perfil Profesional
 
-Fullstack JavaScript Developer con 4+ años de experiencia. Autodidacta (75% autoaprendizaje). Construye productos propios con usuarios reales, no solo proyectos de tutorial. Ha liderado equipos pequeños, enseñado code reviews y mentoreado a otros desarrolladores. 90% de sus proyectos son en TypeScript.
+Desarrollador Full-Stack. Construyo y opero productos en producción, con usuarios reales y autonomía de punta a punta: interfaz, API, modelado de datos, infraestructura, despliegue y observabilidad. Autodidacta — la mayoría de lo que sé lo aprendí por mi cuenta, rompiendo cosas y leyendo documentación.
 
-**Enfoque:** Arquitecturas escalables, código limpio, experiencias de usuario optimizadas. Capaz de llevar un producto de cero a producción de forma individual.
+Coordino y enseño: dirigí colaboradores en la primera versión de Zeew Space, fui responsable técnico en proyectos freelance, y diseñé una iniciativa para formar desarrolladores en trabajo en equipo — control de versiones, revisión de código, gestión de tareas y comunicación.
+
+**Enfoque:** Arquitecturas escalables, código limpio, experiencias de usuario cuidadas. Capaz de llevar un producto de cero a producción de forma individual.
 
 ---
 
 ## Stack Técnico
 
 ### Frontend
+
 - React.js, Next.js (App Router, Server Components, Server Actions)
-- TypeScript (90% de todos los proyectos)
+- TypeScript (mayoría de los proyectos)
 - JavaScript ES6+
 - Zustand (migró de Redux y Context API)
 - React Query
@@ -32,39 +35,59 @@ Fullstack JavaScript Developer con 4+ años de experiencia. Autodidacta (75% aut
 - Responsive Design, Mobile First
 
 ### Backend
+
 - Node.js, Express.js, NestJS
-- API REST
-- Passport.js, Auth.js, Better-auth
+- API REST, tRPC
+- Passport.js, Auth.js, Better Auth
 - Sistema de permisos bitwise (implementación propia)
 - Discord.js
 
 ### Bases de Datos
-- PostgreSQL, MySQL, MongoDB
-- Prisma ORM (migraciones, transacciones, relaciones)
+
+- PostgreSQL, MySQL
+- Prisma ORM (migraciones, transacciones, relaciones), Drizzle
 
 ### DevOps
+
 - Docker (Compose con app + Redis + Nginx, boilerplates propios)
-- GitHub Actions (CI/CD a VPS)
-- Vercel
-- VPS propio
+- GitHub Actions (CI/CD)
+- Vercel, AWS, Railway
+- Cloudflare R2
 
 ### Caching
-- Redis (cache de contenido, sistema de niveles en bot)
+
+- Redis (caché de contenido, sistema de niveles en bots)
+
+### Observabilidad
+
+- Grafana, Prometheus, Sentry, Pino
 
 ### Testing
-- Playwright (en desarrollo activo, aprendiendo)
+
+- Playwright (pruebas de API e integración)
 
 ### Automatización
+
 - n8n (flujos de trabajo, integraciones)
+- BullMQ
 
 ### Scripting
+
 - Lua (desarrollo de servidores FiveM)
 
 ### Documentación
+
 - Astro + Starlight (docs técnicas)
 
+### AI Tooling
+
+- Claude Code (uso diario en desarrollo y revisión de código)
+- opencode
+
 ### Herramientas
+
 - Git (conventional commits, feature branches, PRs, code reviews)
+- Turborepo, pnpm
 - Figma, Notion
 - Stripe API
 
@@ -72,75 +95,80 @@ Fullstack JavaScript Developer con 4+ años de experiencia. Autodidacta (75% aut
 
 ## Proyectos
 
-### FiveHub Pro (2026 – Presente)
+### FiveHub (2026 – Presente)
+
 - **URL:** fivehub.pro
 - **Docs:** docs.fivehub.pro
-- **Qué es:** Plataforma de gestión de assets tipo CDN simplificado para servidores de juegos. NO es un marketplace. Los desarrolladores suben sus propios archivos (menús, logos, recursos de servidor) y los consumen vía URL, sin tener que configurar S3 ni infraestructura propia.
-- **Problema que resuelve:** Un programador de servidores de FiveM, Roblox o Minecraft solo quiere una URL, una forma de subir archivos y consumirlos. Sin FiveHub tendrían que configurar S3, crear sus propias conexiones, y gestionar infraestructura.
-- **SDKs:** Lua (disponible en repo) y Node.js (en desarrollo). Permiten subir assets programáticamente estilo `fivehubpro.upload(data, cb)`.
-- **Documentación:** Escrita manualmente con Astro + Starlight.
-- **Estado:** Beta pública con 5 usuarios probándolo (comunidades pequeñas y grandes).
-- **Modelo:** Freemium.
-- **Stack:** Next.js (fullstack), TypeScript, Docker, PostgreSQL.
-- **Desarrollo:** Individual, un mes.
-
-### Zeew.Space (2024 – Presente)
-- **URL:** zeew.space (plataforma de producción)
-- **Qué es:** Plataforma edtech para enseñanza de programación a la comunidad hispanohablante. Filosofía "Aprende Creando" — project-first methodology donde los conceptos emergen de la necesidad del proyecto.
-- **Métricas:** 500+ usuarios registrados en los primeros 3 meses.
-- **Estado actual:** Rediseñando la oferta educativa. Ruta completa de backend con Node.js (9+ cursos, 2 ya grabados). Relanzamiento planificado para agosto 2025.
-- **Cursos:** Originalmente 27, reducidos a 6 (los más populares). Nuevo curriculum en producción.
-- **Contenido:** Video con screen capture + voiceover. YouTube para cursos gratuitos (Lua).
-- **Stack:** Next.js, TypeScript, NestJS, Prisma ORM, PostgreSQL, Redis, Tailwind CSS, Stripe, Bunny Stream (CDN/video).
+- **Qué es:** CDN especializado para servidores de FiveM, con SDK propio en JavaScript y Lua. Los desarrolladores suben sus propios assets y los consumen vía URL, sin configurar S3 ni infraestructura propia.
+- **Problema que resuelve:** Ninguna solución existente en el mercado soportaba Lua como runtime. Un programador de servidores FiveM necesitaba montar su propia infraestructura de almacenamiento; FiveHub la reemplaza con un CDN listo para usar.
+- **Métricas reales:** 33 organizaciones activas, 49 usuarios, 1,003 assets servidos, 795 MB, 85% de tasa de activación (28 de 33 organizaciones usan el producto de forma activa).
+- **SDKs:** JavaScript y Lua, para integración directa con servidores de juego.
+- **Arquitectura:** Monorepo con Turborepo — unifica web, documentación, paquete npm y SDK de Lua. Pruebas de API sobre endpoints críticos.
+- **Documentación:** Astro + Starlight.
+- **Stack:** Next.js, TypeScript, PostgreSQL, Prisma ORM, Docker, Nginx, Cloudflare R2, Turborepo.
 - **Desarrollo:** Individual.
-- **Iniciativa de liderazgo:** Formó un equipo de 20 personas para enseñar trabajo colaborativo. Requisito: conocimiento previo del stack y Git/GitHub. Enseñó code reviews, trabajo en equipo. 5 completaron el programa, construyeron un proyecto funcional en 2 meses. De aquí nació la idea de TheForge.
 
-### TheForge (En diseño)
-- **Qué es:** Incubadora intensiva dentro de Zeew Space donde equipos construyen SaaS reales en ciclos de cohorte.
-- **Estado:** MVP scoped con 5 módulos (cohort management, cell/participant org, mentor scorecard, Zeew Score engine 0-1000, health dashboard con GitHub API). Brief técnico producido para handoff.
+### Zeew Space (2019 – Presente)
 
-### aborigenroleplay.com (2024)
-- **Qué es:** Sitio web para comunidad de gaming FiveM (GTA V).
-- **Métricas:** ~25 usuarios activos diarios.
-- **Tipo:** 50% freelance pagado, 50% colaboración con amigo (fundador de la comunidad).
-- **Desarrollo:** Un mes para el sitio web. Colaboración continua en scripts de FiveM en Lua.
-- **Features:** Auth, gestión de usuarios y roles, sistema dinámico de reglas con Markdown, comunicación en tiempo real entre panel web y servidor de juego.
+- **URL:** zeew.space
+- **Qué es:** Plataforma edtech para enseñanza de programación a la comunidad hispanohablante.
+- **Evolución:** 2019 — Zeew API, librería npm para bots de Discord (niveles, moderación, economía). 2021 — Zeew Dev, herramientas para desarrolladores de comunidades online. 2024 — Zeew Space, plataforma edtech completa.
+- **Métricas reales:** 158 usuarios registrados, 7 cursos publicados, 18 artículos técnicos, 7.5 horas de contenido. Sin inversión externa.
+- **Autenticación:** tres proveedores en producción (email, Discord, GitHub), con uso real distribuido 81 / 61 / 19 usuarios respectivamente.
+- **Contenido:** Video con screen capture + voiceover.
+- **Stack:** Next.js, React, NestJS, TypeScript, PostgreSQL, Prisma ORM, Redis, Stripe API, Tailwind CSS.
+- **Desarrollo:** Individual — diseño, interfaz y backend propios.
+- **Iniciativa de liderazgo:** Diseñé un programa para formar desarrolladores en trabajo en equipo — control de versiones, revisión de código, gestión de tareas, comunicación — dirigido a personas con conocimientos técnicos pero sin experiencia colaborativa. También coordiné colaboradores en la primera versión del proyecto.
+
+### Asvitrax (2022 – Presente)
+
+- **URL:** asvitrax.com
+- **Qué es:** Bot de Discord con panel de administración multiservidor.
+- **Métricas reales:** operando en 249 servidores.
+- **Feature destacado:** algoritmo de detección de contenido resistente a evasión — normaliza caracteres ASCII y sustituciones tipográficas antes de comparar, detectando variantes que un filtro por coincidencia literal deja pasar.
+- **Otras features:** configuración independiente por comunidad, notificaciones automáticas de Twitch para avisos de transmisión en vivo.
+- **Observabilidad:** Grafana y Prometheus en producción.
+- **Stack:** Node.js, TypeScript, PostgreSQL, Turborepo, Grafana, Prometheus.
+- **Inicio:** Septiembre 2022 (confirmado en historial del repositorio).
+
+### AborigenRoleplay (2023 – 2024)
+
+- **URL:** aborigenroleplay.com
+- **Qué es:** Plataforma web completa para comunidad de FiveM (GTA V).
+- **Tipo:** Freelance, en colaboración con el fundador de la comunidad.
+- **Desarrollo:** Septiembre 2023 – Abril 2024.
+- **Features:** Autenticación vía Discord OAuth con gestión de roles, editor dinámico de reglas en Markdown administrable sin código, comunicación en tiempo real entre panel y servidor de juego vía API.
 - **Stack:** Next.js, TypeScript, Prisma ORM, MySQL, Tailwind CSS.
-- **Estado:** Sigue activo.
-
-### CactusFire (2021 – 2024)
-- **Qué es:** Bot de Discord con dashboard web.
-- **Métricas:** Comunidad de miles de usuarios (número exacto no verificable, dejó el proyecto).
-- **Equipo:** 2 personas. Uziel hizo el dashboard y parte del bot, la otra persona se dedicaba al bot.
-- **Rol:** Desarrollador Frontend / Tech Lead.
-- **Features:** Dashboard con OAuth de Discord, gestión multi-servidor, sistema de permisos por roles con detección automática de admins, sistema de niveles con Redis.
-- **Hitos:** Lideró migración de v1 a v2. Enseñó code reviews al equipo.
-- **Stack:** Express.js, Handlebars, MySQL, Redis, Discord.js, OAuth.
-- **Estado:** Ya no está involucrado por diferencias de ideas. Sin relación actual.
 
 ### Comunidad Sintiendome (2023)
-- **Qué es:** Automatización administrativa para comunidad de psicólogos.
-- **Tipo:** Proyecto pagado.
-- **Cliente:** 5 psicólogos.
-- **Qué hizo:** Automatizó flujos con n8n (búsqueda de agendas, actividades, tareas internas, recordatorios). Bot de Discord que centralizó información — ejecutaban un comando y obtenían los datos sin buscar en Notion u otras herramientas.
+
+- **Qué es:** Automatización administrativa para una comunidad de psicólogos.
+- **Tipo:** Proyecto pagado, cliente de 5 psicólogos.
+- **Qué hice:** Automaticé flujos con n8n (búsqueda de agendas, actividades, tareas internas, recordatorios). Bot de Discord que centralizó información — un comando reemplazaba buscar manualmente en Notion u otras herramientas.
 - **Stack:** n8n, Discord.js, Node.js.
 
 ### Proyectos menores
-- **TickTime:** Contador regresivo con ajuste automático a zona horaria del usuario.
-- **Todos Juntos Siempre a Tiempo:** Convertidor de horarios para coordinación de eventos globales.
 
-### PsyManage (En diseño)
-- **Qué es:** Plataforma multi-tenant de gestión de pacientes para psicólogos.
-- **Estado:** 4 sprints planificados. Stripe diferido a V1.1.
-- **Stack planificado:** Next.js 14, Prisma ORM, PostgreSQL en Supabase (RLS), NextAuth.js, Stripe, Resend.
+- **TickTime:** Contador regresivo con ajuste automático a zona horaria del usuario.
+- **Todos Juntos, Siempre a Tiempo:** Convertidor de horarios para coordinación de eventos globales.
+
+### En diseño / exploración
+
+_Nota: revisar vigencia de estos dos antes de usarlos en cualquier material — no confirmados como activos al momento de esta actualización._
+
+- **TheForge:** Incubadora dentro de Zeew Space donde equipos construirían SaaS reales en ciclos de cohorte.
+- **PsyManage:** Plataforma multi-tenant de gestión de pacientes para psicólogos.
 
 ---
 
 ## Nivel Técnico (Evaluación honesta)
 
-### Avanzado (defiende en entrevista)
+_Esta sección es para uso personal / referencia interna al preparar entrevistas — no para publicar tal cual en materiales de postulación._
+
+### Sólido (defiendo en entrevista)
+
 - React.js / Next.js App Router (uso diario)
-- TypeScript (90% de proyectos)
+- TypeScript (mayoría de proyectos)
 - Zustand + React Query
 - Express.js (middleware custom, permisos bitwise)
 - Prisma ORM (transacciones, migraciones)
@@ -148,47 +176,47 @@ Fullstack JavaScript Developer con 4+ años de experiencia. Autodidacta (75% aut
 - Redis en producción
 - Git (conventional commits, PRs, code reviews)
 - Consumo de APIs/documentación sin tutoriales
-- useRef (debounce, persistencia entre renders)
-- Map/Set con criterio
 - Next.js: App Router, Server Actions, Middleware, API Routes
 
-### Intermedio (funcional con huecos teóricos)
-- Event Loop (concepto general, falta microtasks vs macrotasks)
-- Closures (los usa pero definición imprecisa)
-- Prototypes (entiende la idea, falta prototype chain)
-- useEffect (lo usa bien, falta explicar lifecycle con precisión)
-- useMemo/useCallback (confusión: useCallback no es para fórmulas, es para memorizar funciones)
-- Virtual DOM / Reconciliación (sabe qué hace, no cómo)
-- Server Components (falta streaming, Suspense)
-- NestJS (lo usa en producción, dependency injection no bien explicada)
-- OAuth (usa herramientas pero falta flujo teórico completo)
-- SQL (JOINs con 3 tablas, usa Prisma mainly)
-- SSR/SSG/ISR (usa defaults, falta generateStaticParams, revalidación)
-- CI/CD (funcional pero básico)
-- Patrones de diseño (Singleton, Factory, Observer intuitivo, Strategy desconocido)
-- Debugging (console.log + DevTools, falta breakpoints)
-- Custom Hooks (useDebounce, falta hooks más complejos)
+### Funcional (con huecos teóricos)
 
-### Básico (necesita estudio)
+- Event Loop (concepto general, falta microtasks vs macrotasks)
+- Closures (los uso pero definición imprecisa)
+- Prototypes (entiendo la idea, falta prototype chain)
+- useEffect (lo uso bien, falta explicar lifecycle con precisión)
+- useMemo/useCallback (repasar la diferencia con precisión)
+- Virtual DOM / Reconciliación (sé qué hace, no el cómo a fondo)
+- Server Components (falta streaming, Suspense)
+- NestJS (lo uso en producción, dependency injection no bien explicada)
+- OAuth (uso herramientas pero falta flujo teórico completo)
+- SQL (JOINs con varias tablas, uso Prisma principalmente)
+- SSR/SSG/ISR (uso defaults, falta generateStaticParams, revalidación)
+- CI/CD (funcional pero básico)
+- Patrones de diseño (Singleton/Factory/Observer intuitivo, Strategy por repasar)
+- Debugging (console.log + DevTools, falta breakpoints)
+
+### Por reforzar
+
 - Generators / Symbol / Iterators
-- Testing (recién empezando con Playwright, sin Jest/RTL)
-- WebSockets (una experiencia, no recuerda)
-- Normalización de BD (definiciones imprecisas)
-- Índices de BD (sabe cuándo, no entiende B-trees)
+- Testing más allá de Playwright (sin Jest/RTL todavía)
+- WebSockets (poca experiencia práctica)
+- Normalización de BD (definiciones a repasar)
+- Índices de BD (sé cuándo usarlos, no a fondo el cómo — B-trees)
+- Arquitectura de microservicios (entiendo el concepto, sin experiencia formal en un entorno con orquestación)
 
 ---
 
-## Experiencia de Liderazgo
+## Experiencia de Liderazgo y Enseñanza
 
-- **Tech Lead en CactusFire:** Lideró migración v1→v2, enseñó code reviews.
-- **PM y formador en Zeew Space:** Organizó equipo de 20 personas, enseñó Git/GitHub, code reviews, trabajo colaborativo. 5 completaron el programa.
-- **Creador de contenido educativo:** Zeew Space, cursos en YouTube (Lua), ruta de backend en producción.
+- **Zeew Space:** coordiné colaboradores en la primera versión del proyecto, y diseñé una iniciativa para formar desarrolladores en trabajo en equipo — Git/GitHub, code reviews, gestión de tareas, comunicación.
+- **Proyectos freelance:** responsable técnico en varios de ellos.
+- **Creador de contenido educativo:** Zeew Space — cursos, artículos técnicos, ruta de backend en producción.
 
 ---
 
 ## Educación
 
-- **Ingeniería en Sistemas Computacionales** — Universidad Kuapá (en línea). Graduación: Diciembre 2026. Actualmente en servicio social y prácticas.
+- **Ingeniería en Sistemas** — Universidad UK (México), RVOE SEP. Titulación: noviembre 2026.
 - **Técnico en Administración** — CONALEP. Completado.
 - **Certificaciones:** React.js, JavaScript, HTML/CSS, Responsive Design, Express.js, Passport.js, Docker (Platzi/Udemy).
 
@@ -196,28 +224,27 @@ Fullstack JavaScript Developer con 4+ años de experiencia. Autodidacta (75% aut
 
 ## Idiomas
 
-- **Español:** Nativo
-- **Inglés:** A2-B1 lectura técnica. Solo lectura, no conversacional. Estudiando actualmente en la universidad.
+- **Español:** Nativo.
+- **Inglés:** Lectura técnica — documentación, código y especificaciones. Fortaleciendo actualmente la parte hablada.
 
 ---
 
 ## Situación Actual
 
-- Buscando empleo en empresa mexicana con nómina (IMSS, INFONAVIT, aguinaldo, etc.)
-- Modalidad: Remoto
-- Disponibilidad: Inmediata
-- Universidad en línea, no limita horarios
-- Rango salarial realista: $30,000-$40,000 MXN/mes. Con testing + inglés B2: $45,000-$55,000 MXN.
-- Industrias de interés: Fintech, EdTech, Startups, Agencias digitales, Gaming
+- Buscando empleo remoto en empresas mexicanas o LATAM, modalidad remota.
+- Disponibilidad: inmediata.
+- Industrias de interés: Fintech, EdTech, Startups, Agencias digitales, Gaming.
+
+_Nota: el rango salarial objetivo se maneja en documentación privada, no en este archivo público._
 
 ---
 
 ## Personalidad y Approach
 
-- Autodidacta fuerte (75% autoaprendizaje)
-- Prefiere construir productos reales, no solo aprender teoría
-- Honesto sobre lo que sabe y lo que no sabe
-- Diseña estructuras completas antes de producir (cursos, features, briefs)
-- Pragmático: usa herramientas existentes antes de reinventar
-- Produce documentación técnica (Astro/Starlight)
-- Nickname consistente: KamerrEzz en todas las plataformas
+- Autodidacta fuerte — la mayoría del conocimiento es autoaprendizaje.
+- Prefiere construir productos reales antes que solo aprender teoría.
+- Honesto sobre lo que sabe y lo que no sabe.
+- Diseña estructuras completas antes de producir (cursos, features, briefs).
+- Pragmático: usa herramientas existentes antes de reinventar.
+- Produce documentación técnica (Astro/Starlight).
+- Nickname consistente: KamerrEzz en todas las plataformas.
