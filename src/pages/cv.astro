@@ -1,0 +1,331 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import { SITE_TITLE } from '../consts';
+
+interface ExperienceItem {
+	project: string;
+	role: string;
+	dates: string;
+	url: string;
+	urlLabel: string;
+	tagline: string;
+	bullets: string[];
+	stack: string[];
+}
+
+const experience: ExperienceItem[] = [
+	{
+		project: 'FiveHub',
+		role: 'Desarrollador Full-Stack',
+		dates: 'Enero 2026 – Actualidad · Remoto',
+		url: 'https://fivehub.pro',
+		urlLabel: 'fivehub.pro',
+		tagline: 'CDN especializado para servidores de FiveM, GTA V, construido desde cero incluyendo el SDK de integración.',
+		bullets: [
+			'Las comunidades de FiveM improvisaban su propio hosting porque ninguna solución soportaba Lua. Construí el producto completo en Next.js y TypeScript —sitio, panel multi-organización, documentación— y dos SDKs propios, en JavaScript y Lua, para cubrir ese runtime sin soporte.',
+			'Prioricé adopción sobre registros: implementé cuotas por organización y un panel con métricas en vivo para que cada equipo viera su propio consumo. 85% de las organizaciones suben assets de forma activa —28 de 33— sirviendo 1,003 assets y 795 MB.',
+			'Perdía tiempo sincronizando versiones entre paquetes, así que unifiqué web, documentación, paquete npm y SDK de Lua en un monorepo con Turborepo, con pruebas de API sobre los endpoints críticos.',
+		],
+		stack: ['Next.js', 'TypeScript', 'PostgreSQL', 'Prisma ORM', 'Docker', 'Nginx', 'Cloudflare R2', 'Turborepo'],
+	},
+	{
+		project: 'Zeew Space',
+		role: 'Desarrollador Full-Stack',
+		dates: '2019 – Actualidad · Remoto',
+		url: 'https://zeew.space',
+		urlLabel: 'zeew.space',
+		tagline: '2019 librería npm para bots de Discord → 2021 herramientas para desarrolladores → 2024 plataforma edtech en español.',
+		bullets: [
+			'Construí la plataforma completa en Next.js, React y Tailwind CSS: catálogo de cursos, reproductor, progreso del alumno, insignias y panel editorial.',
+			'Aposté por tres proveedores de autenticación —email, Discord y GitHub— porque mi audiencia ya vivía en Discord. El uso real quedó repartido 81 / 61 / 19 usuarios, validando la decisión.',
+			'El catálogo se reconsultaba en cada carga contra PostgreSQL. Introduje Redis como capa de caché e integré Stripe. 158 usuarios y 7 cursos activos, operado en solitario.',
+		],
+		stack: ['Next.js', 'React', 'NestJS', 'TypeScript', 'PostgreSQL', 'Prisma ORM', 'Redis', 'Stripe API', 'Tailwind CSS'],
+	},
+	{
+		project: 'Asvitrax',
+		role: 'Desarrollador Full-Stack',
+		dates: 'Septiembre 2022 – Actualidad · Remoto',
+		url: 'https://asvitrax.com',
+		urlLabel: 'asvitrax.com',
+		tagline: 'Bot de Discord con panel de administración multiservidor, operando en 249 servidores.',
+		bullets: [
+			'Los filtros por coincidencia literal dejaban pasar evasiones con caracteres ASCII y sustituciones tipográficas. Diseñé un algoritmo que normaliza el texto antes de comparar, detectando variantes que un filtro convencional no ve.',
+			'Construí un panel de administración con configuración independiente por comunidad e integré notificaciones automáticas de Twitch para avisos de transmisión en vivo.',
+			'Implementé observabilidad con Grafana y Prometheus para monitorear métricas de uso y salud del servicio en producción.',
+		],
+		stack: ['Node.js', 'TypeScript', 'PostgreSQL', 'Turborepo', 'Grafana', 'Prometheus'],
+	},
+	{
+		project: 'AborigenRoleplay',
+		role: 'Desarrollador Web',
+		dates: 'Septiembre 2023 – Abril 2024 · Remoto',
+		url: 'https://aborigenroleplay.com',
+		urlLabel: 'aborigenroleplay.com',
+		tagline: 'Plataforma web completa para comunidad de FiveM, GTA V.',
+		bullets: [
+			'El equipo administrativo dependía de un desarrollador para cambiar las reglas de la comunidad. Construí un editor dinámico en Markdown sin tocar código, con Discord OAuth y comunicación en tiempo real entre el panel y el servidor de juego vía API.',
+		],
+		stack: ['Next.js', 'MySQL', 'Prisma ORM', 'Tailwind CSS'],
+	},
+];
+
+const techStack: { category: string; items: string[] }[] = [
+	{ category: 'Lenguajes', items: ['TypeScript', 'JavaScript', 'Lua', 'SQL'] },
+	{ category: 'Frontend', items: ['Next.js', 'React', 'Tailwind CSS', 'shadcn/ui'] },
+	{ category: 'Backend', items: ['Node.js', 'NestJS', 'Express', 'tRPC', 'Zod', 'BullMQ'] },
+	{ category: 'Datos', items: ['PostgreSQL', 'Redis', 'Prisma ORM', 'Drizzle'] },
+	{ category: 'Auth y pagos', items: ['OAuth2', 'Auth.js', 'Better Auth', 'Passport.js', 'Stripe'] },
+	{ category: 'Infraestructura', items: ['Docker', 'Nginx', 'Linux', 'Cloudflare R2', 'AWS', 'Vercel', 'GitHub Actions'] },
+	{ category: 'Tooling', items: ['Turborepo', 'pnpm', 'Playwright', 'n8n', 'Grafana', 'Prometheus', 'Sentry', 'Pino'] },
+	{ category: 'AI Tooling', items: ['Claude Code', 'opencode'] },
+];
+---
+
+<!doctype html>
+<html lang="es" class="dark scroll-smooth">
+	<head>
+		<BaseHead
+			title={`CV — Uziel Procopio Kauil - ${SITE_TITLE}`}
+			description="Currículum de Uziel Procopio Kauil, desarrollador full-stack. Productos en producción, experiencia en Next.js, TypeScript, PostgreSQL e infraestructura. Disponible remoto desde Playa del Carmen, México."
+		/>
+	</head>
+
+	<body class="bg-[#050505] text-[#FAFAFA] font-sans selection:bg-[#d5338b] selection:text-white" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0); background-size: 32px 32px;">
+
+		<div class="max-w-[1200px] mx-auto min-h-screen border-x-[1.5px] border-white/10 bg-[#0A0A0A]/90 backdrop-blur-md flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.9)]">
+
+			{/* ── TOP NAV ── */}
+			<nav class="flex items-stretch border-b-[1.5px] border-white/10 sticky top-0 z-50 bg-[#0A0A0A] h-14">
+				<a href="/" class="flex items-center px-4 md:px-8 font-mono text-[11px] md:text-sm font-black tracking-widest uppercase text-zinc-500 transition-colors hover:text-white hover:bg-white/10 border-r-[1.5px] border-white/10 w-max shrink-0">
+					<span class="w-2 h-2 bg-zinc-600 mr-2 transition-colors group-hover:bg-white"></span>
+					KamerrEzz
+				</a>
+				<div class="flex-1 flex justify-end">
+					<a href="/projects" class="hidden sm:flex items-center justify-center px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white hover:bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						Proyectos
+					</a>
+					<a href="/blog" class="hidden sm:flex items-center justify-center px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white hover:bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						Blog
+					</a>
+					<div class="hidden sm:flex items-center justify-center px-6 font-mono text-xs font-bold tracking-widest uppercase text-white bg-white/5 border-l-[1.5px] border-white/10 transition-colors">
+						<span class="w-1.5 h-1.5 bg-[#d5338b] mr-2 shadow-[0_0_8px_#d5338b]"></span>
+						CV
+					</div>
+					<a href="https://github.com/kamerrezz" target="_blank" rel="noopener noreferrer" class="flex sm:hidden lg:flex items-center justify-center px-4 md:px-6 font-mono text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-[#d5338b] hover:bg-[#d5338b]/10 border-l-[1.5px] border-white/10 transition-all">
+						GitHub ↗
+					</a>
+				</div>
+			</nav>
+
+			{/* ── MAIN CONTENT ── */}
+			<main class="flex-1 flex flex-col">
+
+				{/* PAGE HEADER / HERO */}
+				<header class="p-8 md:p-12 lg:p-20 border-b-[1.5px] border-white/10 relative overflow-hidden group">
+					<div class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
+
+					<div class="mb-4 flex flex-wrap items-center gap-3">
+						<span class="px-3 py-1 bg-[#FAFF00] text-black shadow-[3px_3px_0_rgba(255,255,255,0.2)] font-mono text-xs font-black uppercase tracking-widest">
+							Currículum ///
+						</span>
+						<span class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+							Playa del Carmen, México — Remoto
+						</span>
+					</div>
+
+					<h1 class="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter uppercase text-[#FAFAFA] mb-4">
+						UZIEL <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-400 to-[#d5338b]">PROCOPIO.</span>
+					</h1>
+
+					<p class="text-lg md:text-xl text-zinc-400 max-w-2xl leading-relaxed font-light mb-10">
+						Desarrollador Full-Stack — <a href="mailto:dev@kamerrezz.com" class="text-zinc-300 underline decoration-white/20 underline-offset-4 hover:text-white transition-colors">dev@kamerrezz.com</a>
+					</p>
+
+					<div class="flex flex-wrap items-center gap-4">
+						<a href="/cv-uziel-procopio.pdf" class="px-6 py-4 bg-[#d5338b] text-white font-mono text-sm font-black uppercase tracking-widest shadow-[6px_6px_0_0_#FAFAFA] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0_0_#FAFAFA] transition-all">
+							Descargar CV (PDF) ↓
+						</a>
+						<a href="https://linkedin.com/in/kamerrezz" target="_blank" rel="noopener noreferrer" class="px-6 py-4 border-[1.5px] border-white/10 bg-white/5 text-zinc-300 font-mono text-sm font-bold uppercase tracking-widest hover:text-white hover:bg-white/10 transition-all">
+							LinkedIn ↗
+						</a>
+						<a href="https://github.com/kamerrezz" target="_blank" rel="noopener noreferrer" class="px-6 py-4 border-[1.5px] border-white/10 bg-white/5 text-zinc-300 font-mono text-sm font-bold uppercase tracking-widest hover:text-white hover:bg-white/10 transition-all">
+							GitHub ↗
+						</a>
+					</div>
+				</header>
+
+				{/* PERFIL */}
+				<section class="p-8 md:p-12 border-b-[1.5px] border-white/10 hover:bg-white/[0.02] transition-colors">
+					<h2 class="font-mono text-sm font-black tracking-[0.2em] text-white uppercase mb-8 flex items-center gap-2">
+						<span class="w-1.5 h-1.5 bg-[#d5338b]"></span>
+						Perfil
+					</h2>
+					<div class="space-y-4 text-zinc-300 text-lg leading-relaxed font-light max-w-3xl">
+						<p>
+							Desarrollador Full-Stack. Construyo y opero productos en producción, con usuarios reales y autonomía de punta a punta: interfaz, API, modelado de datos, infraestructura, despliegue y observabilidad.
+						</p>
+						<ul class="space-y-3 text-zinc-400">
+							<li class="flex gap-3">
+								<span class="font-mono text-[#d5338b] shrink-0">→</span>
+								<span>Tres productos en producción que mantengo en funcionamiento de forma continua.</span>
+							</li>
+							<li class="flex gap-3">
+								<span class="font-mono text-[#d5338b] shrink-0">→</span>
+								<span>Coordino y enseño: dirigí colaboradores en la primera versión de Zeew Space, fui responsable técnico en proyectos freelance, y diseñé una iniciativa para formar desarrolladores en trabajo en equipo — control de versiones, revisión de código, gestión de tareas y comunicación.</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				{/* EXPERIENCIA */}
+				<section class="flex flex-col">
+					<div class="p-8 md:p-12 border-b-[1.5px] border-white/10">
+						<h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white flex items-center gap-3">
+							<span class="w-1.5 h-1.5 bg-[#FAFF00]"></span>
+							Experiencia
+						</h2>
+					</div>
+
+					{experience.map((job, index) => (
+						<article class="border-b-[1.5px] border-white/10 hover:bg-white/[0.02] transition-colors">
+							{/* Fake Browser Window */}
+							<div class="h-6 w-full border-b-[1.5px] border-white/10 flex items-center px-3 gap-1.5 bg-white/5">
+								<div class="w-2 h-2 rounded-full border-[1.5px] border-zinc-600"></div>
+								<div class="w-2 h-2 rounded-full border-[1.5px] border-zinc-600"></div>
+								<div class="w-2 h-2 rounded-full border-[1.5px] border-zinc-600"></div>
+								<span class="ml-2 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+									exp_{String(index + 1).padStart(2, '0')}
+								</span>
+							</div>
+
+							<div class="p-8 md:p-12">
+								<div class="flex flex-wrap items-baseline justify-between gap-3 mb-2">
+									<h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight text-white">
+										{job.project}
+										<span class="text-zinc-500 font-bold text-lg md:text-xl normal-case tracking-normal"> · {job.role}</span>
+									</h3>
+									<span class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+										{job.dates}
+									</span>
+								</div>
+
+								<p class="italic text-zinc-400 mb-8 font-light">
+									{job.tagline}{' '}
+									<a href={job.url} target="_blank" rel="noopener noreferrer" class="text-[#d5338b] hover:text-white not-italic font-mono text-xs uppercase tracking-widest border-b-[1.5px] border-[#d5338b] hover:border-white transition-colors">
+										{job.urlLabel} ↗
+									</a>
+								</p>
+
+								<ul class="space-y-4 text-zinc-300 font-light leading-relaxed max-w-4xl mb-8">
+									{job.bullets.map((bullet) => (
+										<li class="flex gap-3">
+											<span class="font-mono text-[#d5338b] shrink-0">→</span>
+											<span>{bullet}</span>
+										</li>
+									))}
+								</ul>
+
+								<div class="flex flex-wrap gap-2">
+									{job.stack.map((tech) => (
+										<span class="px-2 py-1 border-[1.5px] border-white/10 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 bg-white/5">
+											{tech}
+										</span>
+									))}
+								</div>
+							</div>
+						</article>
+					))}
+				</section>
+
+				{/* STACK TÉCNICO */}
+				<section class="flex flex-col">
+					<div class="p-8 md:p-12">
+						<h2 class="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white flex items-center gap-3">
+							<span class="w-1.5 h-1.5 bg-[#d5338b]"></span>
+							Stack Técnico
+						</h2>
+					</div>
+
+					<div class="flex flex-col border-t-[1.5px] border-white/10">
+						{techStack.map((row) => (
+							<div class="grid grid-cols-1 md:grid-cols-12 border-b-[1.5px] border-white/10 hover:bg-white/[0.02] transition-colors">
+								<div class="md:col-span-3 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-white/10 py-5 px-4 flex items-center">
+									<h3 class={`font-mono text-xs uppercase tracking-widest font-bold ${row.category === 'AI Tooling' ? 'text-[#FAFF00]' : 'text-[#d5338b]'}`}>
+										{row.category}
+									</h3>
+								</div>
+								<div class="md:col-span-9 px-4 py-5 flex flex-wrap gap-2 items-center">
+									{row.items.map((tech) => (
+										<span class="px-2 py-1 border-[1.5px] border-white/10 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-400 bg-white/5">
+											{tech}
+										</span>
+									))}
+									{row.category === 'AI Tooling' && (
+										<span class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+											— uso diario en desarrollo y revisión de código
+										</span>
+									)}
+								</div>
+							</div>
+						))}
+					</div>
+				</section>
+
+				{/* FORMACIÓN E IDIOMAS */}
+				<section class="grid grid-cols-1 md:grid-cols-12 border-b-[1.5px] border-white/10">
+					<div class="md:col-span-6 border-b-[1.5px] md:border-b-0 md:border-r-[1.5px] border-white/10 p-8 md:p-12 hover:bg-white/[0.02] transition-colors">
+						<h2 class="font-mono text-sm font-black tracking-[0.2em] text-white uppercase mb-6 flex items-center gap-2">
+							<span class="w-1.5 h-1.5 bg-[#FAFF00]"></span>
+							Formación
+						</h2>
+						<h3 class="text-xl font-black uppercase tracking-tight text-white mb-2">Ingeniería en Sistemas</h3>
+						<p class="text-zinc-400 font-light">Universidad UK, México — RVOE SEP</p>
+						<p class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500 mt-3">Nov. 2023 – Nov. 2026</p>
+					</div>
+					<div class="md:col-span-6 p-8 md:p-12 hover:bg-white/[0.02] transition-colors">
+						<h2 class="font-mono text-sm font-black tracking-[0.2em] text-white uppercase mb-6 flex items-center gap-2">
+							<span class="w-1.5 h-1.5 bg-[#d5338b]"></span>
+							Idiomas
+						</h2>
+						<ul class="space-y-3 text-zinc-300 font-light">
+							<li class="flex gap-3">
+								<span class="font-mono text-[#d5338b] shrink-0">→</span>
+								<span><strong class="text-white font-bold">Español:</strong> Nativo</span>
+							</li>
+							<li class="flex gap-3">
+								<span class="font-mono text-[#d5338b] shrink-0">→</span>
+								<span><strong class="text-white font-bold">Inglés:</strong> Lectura técnica</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</main>
+
+			{/* ── FOOTER ── */}
+			<footer class="bg-[#111111]">
+				<div class="p-8 md:p-16 flex flex-col items-center justify-center text-center border-b-[1.5px] border-white/10 group">
+					<span class="font-mono text-xs text-zinc-500 uppercase tracking-[0.3em] mb-4">¿Hablamos?</span>
+					<a href="mailto:dev@kamerrezz.com" class="text-4xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-zinc-600 hover:scale-105 transition-transform">
+						DEV@KAMERREZZ.COM
+					</a>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-3 divide-y-[1.5px] md:divide-y-0 md:divide-x-[1.5px] divide-white/10 text-center">
+					<div class="p-6 flex items-center justify-center gap-3">
+						<span class="w-2.5 h-2.5 bg-green-500 shadow-[0_0_12px_#22c55e]"></span>
+						<span class="font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase text-white">Disponible</span>
+					</div>
+					<div class="p-6 flex flex-wrap gap-4 items-center justify-center">
+						<a href="https://github.com/kamerrezz" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] lg:text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors">GitHub</a>
+						<span class="text-zinc-600">/</span>
+						<a href="https://linkedin.com/in/kamerrezz" target="_blank" rel="noopener noreferrer" class="font-mono text-[10px] lg:text-xs font-bold tracking-widest uppercase text-zinc-400 hover:text-white transition-colors">LinkedIn</a>
+					</div>
+					<div class="p-6 flex items-center justify-center">
+						<span class="font-mono text-[10px] text-zinc-500 tracking-widest uppercase">© {new Date().getFullYear()} KamerrEzz</span>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+	</body>
+</html>
