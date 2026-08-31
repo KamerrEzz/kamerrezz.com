@@ -4,13 +4,17 @@
   "version": "0.0.1",
   "packageManager": "pnpm@9.15.0",
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate:og": "playwright screenshot --viewport-size=1200,630 --wait-for-timeout=1500 http://localhost:4321/og-preview public/og-image.png"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -22,5 +26,8 @@
     "sharp": "^0.34.3",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }
